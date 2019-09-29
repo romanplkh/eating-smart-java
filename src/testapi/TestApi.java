@@ -6,6 +6,7 @@
 package testapi;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,9 +14,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -28,108 +35,102 @@ public class TestApi {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+
         try {
             Call2();
-                
+
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        
-        
+
     }
-    
-    
-     public static void Call2() throws MalformedURLException, ProtocolException{
-          try {
-            URL url = new URL("https://api.edamam.com/api/nutrition-data?app_id=f7c18e2c&app_key=4d954df472a36b23bdd06f81aeff9cc6&ingr=1%20large%20apple");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+    public static void Call2() throws MalformedURLException, ProtocolException {
+        try {
             
+            Scanner sc = new Scanner(System.in);
+            
+            
+            System.out.println("Your search");
+            
+            String search = sc.nextLine();
+            
+            
+            URL url = new URL("https://api.edamam.com/api/nutrition-data?app_id=f7c18e2c&app_key=4d954df472a36b23bdd06f81aeff9cc6&ingr="+ URLEncoder.encode(search, "UTF-8"));
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
 
-//            if (conn.getResponseCode() != 200) {
-//                throw new RuntimeException("Failed : HTTP error code : "
-//                        + conn.getResponseCode());
-//            }
-
             BufferedReader response = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
-            
-            
+
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(
+                    DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+            //PARSE ONE OBJECT IN COLLECTION
+            TotalNutrients nutrientsCollection = objectMapper.readValue(response, TotalNutrients.class);
+
+            //CREATE MAP WITH ELEMENT AND ITS DETAILS
+            Map<String, NutritientsDetails> nutrientsDetailsMap = new HashMap<>();
             
-           
             
-              Map<String, Object> jsonMap = objectMapper.readValue(response,
-    new TypeReference<Map<String,Object>>(){});
-              
-              
-              Map<String, Object> nutrients = new HashMap<>();
-              
-              jsonMap.entrySet().forEach(entry -> {
-              
-                  nutrients.put(entry.getKey(), entry.getValue()); 
-              
-              });
-              
-              
-              
-                        
+         
+                 
+            
+            //LOOP THROUGH COLLECTION, CONSTRUCT OBJECT AND PUT IT IN MAP DETAILS
+            nutrientsCollection.getTotalNutrients().entrySet().stream().forEach((entry) -> {
+
+                String key = entry.getKey();
+                LinkedHashMap<String, Object> val = entry.getValue();
+
+                //GET DETAIL FROM ENTRY
+                String label = val.get("label").toString();
+                Double quantity = Double.valueOf(val.get("quantity").toString());
+                String unit = val.get("unit").toString();
+
+                //Build Object NutrientsDetails
+                NutritientsDetails p = new NutritientsDetails(label, quantity, unit);
+
+                //Push Nutrients details to Collection
+                nutrientsDetailsMap.put(key, p);
+            });
+            
+            
+            
+            
+            
+            //Create filter words 
+            ArrayList fatAbbr = new ArrayList();
+               fatAbbr.add("FAT");
+               fatAbbr.add("FASAT");
+               fatAbbr.add("FAMS");
+               fatAbbr.add("FAPU");
+               
+               
+            //Filter Map           
+        Map<String, NutritientsDetails> filtered = nutrientsDetailsMap.entrySet().stream().filter(obj -> fatAbbr.indexOf(obj.getKey()) != -1).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+            
+            
+
+            
+            //SORT BY KEYS
+//            Map<String, NutritientsDetails> newMapSortedByKey = nutrientsDetailsMap.entrySet().stream()
+//                    .sorted(Map.Entry.<String, NutritientsDetails>comparingByKey())
+//                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+          
+
+            
+            //DISPLAY WHAT IN
+            NutritientsDetails fat = nutrientsDetailsMap.get(Types.FAPU.toString());
+            
             
             conn.disconnect();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-         
-         
-         
-     }
-    
-
-    public static void Call() {
-//        try {
-//            URL url = new URL("https://jsonplaceholder.typicode.com/posts");
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//            
-//            conn.setRequestMethod("GET");
-//            conn.setRequestProperty("Accept", "application/json");
-//
-//            if (conn.getResponseCode() != 200) {
-//                throw new RuntimeException("Failed : HTTP error code : "
-//                        + conn.getResponseCode());
-//            }
-//
-//            BufferedReader response = new BufferedReader(new InputStreamReader(
-//                    (conn.getInputStream())));
-//            
-//             Object obj = new JSONParser().parse(response); 
-//            JSONArray ja = (JSONArray)obj;
-//            
-//            Iterator it = ja.iterator();
-//            
-//             Iterator<Map.Entry> itr1;
-//            //ITERATE THROU ALL ALL OBJECTS IN ARRAY
-//            while(it.hasNext()){
-//                itr1 = ((Map) it.next()).entrySet().iterator();
-//                
-//                
-//                //ITERATE THROUGH PROPERTIES IN ARRAY
-//                while(itr1.hasNext()){
-//                    Map.Entry pair = itr1.next();
-//                    System.out.println(pair.getKey() + " ========= " + pair.getValue());
-//                }
-//            }
-//           
-//        
-//
-//            String output;
-//            System.out.println("Output from Server .... \n");
-//            while ((output = response.readLine()) != null) {
-//                System.out.println(output);
-//            }
-//
-//            conn.disconnect();
-//        } catch (Exception e) {
-       // }
 
     }
 
