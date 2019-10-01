@@ -6,6 +6,7 @@
 
 package testapi;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import java.util.LinkedHashMap;
 
 /**
@@ -45,6 +46,7 @@ public class NutritientsDetails {
     }
 
   
+     JsonNode ENERC_KCAL;
 
    
   public String label;

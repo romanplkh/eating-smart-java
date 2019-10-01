@@ -7,6 +7,7 @@ package testapi;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -47,87 +48,90 @@ public class TestApi {
 
     public static void Call2() throws MalformedURLException, ProtocolException {
         try {
-            
+
             Scanner sc = new Scanner(System.in);
-            
-            
+
             System.out.println("Your search");
-            
+
             String search = sc.nextLine();
+
             
+            //Build URL String
+            URL url = new URL("https://api.edamam.com/api/nutrition-data?app_id=f7c18e2c&app_key=4d954df472a36b23bdd06f81aeff9cc6&ingr=" + URLEncoder.encode(search, "UTF-8"));
             
-            URL url = new URL("https://api.edamam.com/api/nutrition-data?app_id=f7c18e2c&app_key=4d954df472a36b23bdd06f81aeff9cc6&ingr="+ URLEncoder.encode(search, "UTF-8"));
+            //Open HTTP connection
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
+            
+            //CONFIGURATION CONNECTION
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
 
+            
+            //READ DATA AND STORE IN BUFFER
             BufferedReader response = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
-
+            
+            
+            //INIT JSON LIBRARY
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.configure(
-                    DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            //IGNORE PROPERTIES THAT WILL NOT BE USED 
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-            //PARSE ONE OBJECT IN COLLECTION
-            TotalNutrients nutrientsCollection = objectMapper.readValue(response, TotalNutrients.class);
+            //PARSE OBJECT IN COLLECTION
+            NutrientsCollection nutrientsCollection = objectMapper.readValue(response, NutrientsCollection.class);
+
+            System.out.println("-------------------------------ROW DATA---------------------------");
+            
+            nutrientsCollection.totalNutrients.entrySet().stream().forEach(entry -> System.out.println(entry.getKey() + "  ----- " + entry.getValue()));
 
             //CREATE MAP WITH ELEMENT AND ITS DETAILS
             Map<String, NutritientsDetails> nutrientsDetailsMap = new HashMap<>();
-            
-            
-         
-                 
-            
+
             //LOOP THROUGH COLLECTION, CONSTRUCT OBJECT AND PUT IT IN MAP DETAILS
-            nutrientsCollection.getTotalNutrients().entrySet().stream().forEach((entry) -> {
+            nutrientsCollection.totalNutrients.entrySet().stream().forEach((entry) -> {
 
                 String key = entry.getKey();
-                LinkedHashMap<String, Object> val = entry.getValue();
 
-                //GET DETAIL FROM ENTRY
+                //HOW TO PARSE IT INSTEAD OF <OBJECT> Like in MODEL/CLASS with props (label, quatity, unit)
+                LinkedHashMap<String, JsonNode> val = entry.getValue();// <FAT, {}>
+                
+                
+
+                // FAT :{label: "", quantity: "", unit:""}
+                //GET DETAIL FROM ENTRY 
                 String label = val.get("label").toString();
                 Double quantity = Double.valueOf(val.get("quantity").toString());
                 String unit = val.get("unit").toString();
 
-                //Build Object NutrientsDetails
+                //Build Object NutrientsDetails 
                 NutritientsDetails p = new NutritientsDetails(label, quantity, unit);
 
                 //Push Nutrients details to Collection
+                // LinkedHashMap <FAT, {label: "", quantity: "", "unit"}>
                 nutrientsDetailsMap.put(key, p);
             });
-            
-            
-            
-            
-            
+
+            //--------------HOW TO PARSE ONLY THIS PROPERTY TO CLASS let's say class of FATS, PROTEINS, CHARBS etc...
             //Create filter words 
             ArrayList fatAbbr = new ArrayList();
-               fatAbbr.add("FAT");
-               fatAbbr.add("FASAT");
-               fatAbbr.add("FAMS");
-               fatAbbr.add("FAPU");
-               
-               
-            //Filter Map           
-        Map<String, NutritientsDetails> filtered = nutrientsDetailsMap.entrySet().stream().filter(obj -> fatAbbr.indexOf(obj.getKey()) != -1).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-            
-            
+            fatAbbr.add("FAT");
+            fatAbbr.add("FASAT");
+            fatAbbr.add("FAMS");
+            fatAbbr.add("FAPU");
 
-            
+            //Filter Map           
+            Map<String, NutritientsDetails> filtered = nutrientsDetailsMap.entrySet().stream().filter(obj -> fatAbbr.indexOf(obj.getKey()) != -1).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
             //SORT BY KEYS
 //            Map<String, NutritientsDetails> newMapSortedByKey = nutrientsDetailsMap.entrySet().stream()
 //                    .sorted(Map.Entry.<String, NutritientsDetails>comparingByKey())
 //                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-
-          
-
-            
             //DISPLAY WHAT IN
             NutritientsDetails fat = nutrientsDetailsMap.get(Types.FAPU.toString());
-            
-            
+
             conn.disconnect();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

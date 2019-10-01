@@ -13,18 +13,22 @@ import java.util.Map;
  *
  * @author Roman
  */
-public class TotalNutrients {
+public class NutrientsCollection {
 
     //ENERG_CAL  VALUE
-    public Map<String, LinkedHashMap<String, Object>> totalNutrients;
+    public Map<String, LinkedHashMap<String, JsonNode>> totalNutrients;
     public Map<String, LinkedHashMap<String, Object>> totalDaily;
     public Map<String, LinkedHashMap<String, Object>> totalNutrientsKCal;
+    
+    
+    
+    
 
-    public Map<String, LinkedHashMap<String, Object>> getTotalNutrients() {
+    public Map<String, LinkedHashMap<String, JsonNode>> getTotalNutrients() {
         return totalNutrients;
     }
 
-    public void setTotalNutrients(Map<String, LinkedHashMap<String, Object>> totalNutrients) {
+    public void setTotalNutrients(Map<String, LinkedHashMap<String, JsonNode>> totalNutrients) {
         this.totalNutrients = totalNutrients;
     }
 
