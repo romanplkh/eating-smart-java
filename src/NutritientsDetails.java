@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package testapi;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import java.util.LinkedHashMap;
-
-/**
- *
- * @author Roman
- */
 public class NutritientsDetails {
+
+    public String label;
+    public double quantity;
+    public String unit;
+
 
     public String getLabel() {
         return label;
@@ -45,11 +35,5 @@ public class NutritientsDetails {
         this.unit = unit;
     }
 
-  
-     JsonNode ENERC_KCAL;
 
-   
-  public String label;
-  public  double quantity;
-  public  String unit;
 }

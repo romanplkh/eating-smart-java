@@ -1,34 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package testapi;
-
 import com.fasterxml.jackson.databind.JsonNode;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- *
- * @author Roman
- */
 public class NutrientsCollection {
-
     //ENERG_CAL  VALUE
-    public Map<String, LinkedHashMap<String, JsonNode>> totalNutrients;
+    public Map<String, LinkedHashMap<String, Object>> totalNutrients;
     public Map<String, LinkedHashMap<String, Object>> totalDaily;
     public Map<String, LinkedHashMap<String, Object>> totalNutrientsKCal;
-    
-    
-    
-    
 
-    public Map<String, LinkedHashMap<String, JsonNode>> getTotalNutrients() {
+
+
+
+
+    public Map<String, LinkedHashMap<String, Object>> getTotalNutrients() {
         return totalNutrients;
     }
 
-    public void setTotalNutrients(Map<String, LinkedHashMap<String, JsonNode>> totalNutrients) {
+    public void setTotalNutrients(Map<String, LinkedHashMap<String, Object>> totalNutrients) {
         this.totalNutrients = totalNutrients;
     }
 
@@ -47,7 +36,4 @@ public class NutrientsCollection {
     public void setTotalNutrientsKCal(Map<String, LinkedHashMap<String, Object>> totalNutrientsKCal) {
         this.totalNutrientsKCal = totalNutrientsKCal;
     }
-
-    
-
 }
