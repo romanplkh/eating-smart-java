@@ -34,15 +34,26 @@ public class Main {
 
             //GetDoc("1 banana");
 
+            OOP_TEST();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+
+
+    public  static  void OOP_TEST(){
+
+
+
     }
 
     public static  void GetDoc(String search) throws JsonProcessingException {
         MongoClient mongoClient = MongoClients.create("mongodb+srv://roman:Lovelife89!@nutrients-lmd94.mongodb.net/admin?retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("EatingSmart");
         MongoCollection<Document> collection = database.getCollection("Nutrients");
+
         //GET ONE SEARCH FILTER
         Document myDoc2 = collection.find(eq("name", search)).first();
         //System.out.println("FOUND  DATA: " + myDoc2.toJson());
@@ -50,13 +61,14 @@ public class Main {
         ObjectMapper objectMapper = new ObjectMapper();
 
         Map<String, Object> jsonMap = objectMapper.readValue(myDoc2.toJson(),
-                new TypeReference<Map<String,Object>>(){});
+                new TypeReference<>() {
+                });
 
         jsonMap.entrySet().stream().forEach(entry -> System.out.println(entry.getKey()));
 
     }
 
-    public static void Insert(Document value) {
+       public static void Insert(Document value) {
         MongoClient mongoClient = MongoClients.create("mongodb+srv://roman:Lovelife89!@nutrients-lmd94.mongodb.net/admin?retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("EatingSmart");
         MongoCollection<Document> collection = database.getCollection("Nutrients");
@@ -231,7 +243,7 @@ public class Main {
             System.out.println("---------------------INSERT IN DB--------------------------");
             Document doc = new Document("name", search);
             nutrientsCollection.totalNutrients.entrySet().stream().forEach(entry -> doc.append(entry.getValue().get("label").toString(), entry.getValue() ));
-            Insert(doc);
+            //Insert(doc);
 
             //CREATE MAP WITH ELEMENT AND ITS DETAILS
             Map<String, NutritientsDetails> nutrientsDetailsMap = new HashMap<>();
