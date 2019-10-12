@@ -12,6 +12,8 @@ import org.bson.Document;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,7 +36,11 @@ public class Main {
 
             //GetDoc("1 banana");
 
-            OOP_TEST();
+            API api = new API();
+
+            api.getCredentials();
+
+            //OOP_TEST();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -149,6 +155,12 @@ public class Main {
 
     public static void Test2() {
         try {
+
+            BigDecimal bd = new BigDecimal(100.00);
+
+            BigDecimal bd2 = new BigDecimal(253.43);
+
+
 
             Scanner sc = new Scanner(System.in);
 

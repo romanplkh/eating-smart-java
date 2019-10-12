@@ -34,10 +34,11 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" scope="PROVIDED" name="docs" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mongo-java-driver-3.11.0.jar!/" />
+          <root url="jar://E:/java/mongo-java-driver-3.11.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

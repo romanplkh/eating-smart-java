@@ -16,9 +16,11 @@ public class DB {
 
     }
 
-
     public void initDB(){
         try {
+
+
+
             this.database = this.mongoClient.getDatabase("EatingSmart");
         }catch (MongoException ex){
 
