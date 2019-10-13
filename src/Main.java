@@ -4,19 +4,14 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.Block;
-import com.mongodb.MongoClientURI;
 import com.mongodb.client.*;
-import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
-
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.net.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,15 +25,28 @@ public class Main {
         // write your code here
 
         try {
+
+
+            API api = new API();
+           Nutrients n = new Nutrients();
+
+           n.getNutrients(api.getData("1 egg"));
+
+
+
+
+
+
             //Call2();
             //Test2();
             //MongoDB();
 
             //GetDoc("1 banana");
 
-            API api = new API();
+            //API api = new API();
 
-            api.getCredentials();
+            //api.getData("1 egg");
+
 
             //OOP_TEST();
 
@@ -48,14 +56,12 @@ public class Main {
     }
 
 
-
-    public  static  void OOP_TEST(){
-
+    public static void OOP_TEST() {
 
 
     }
 
-    public static  void GetDoc(String search) throws JsonProcessingException {
+    public static void GetDoc(String search) throws JsonProcessingException {
         MongoClient mongoClient = MongoClients.create("mongodb+srv://roman:Lovelife89!@nutrients-lmd94.mongodb.net/admin?retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("EatingSmart");
         MongoCollection<Document> collection = database.getCollection("Nutrients");
@@ -74,7 +80,7 @@ public class Main {
 
     }
 
-       public static void Insert(Document value) {
+    public static void Insert(Document value) {
         MongoClient mongoClient = MongoClients.create("mongodb+srv://roman:Lovelife89!@nutrients-lmd94.mongodb.net/admin?retryWrites=true&w=majority");
         MongoDatabase database = mongoClient.getDatabase("EatingSmart");
         MongoCollection<Document> collection = database.getCollection("Nutrients");
@@ -159,7 +165,6 @@ public class Main {
             BigDecimal bd = new BigDecimal(100.00);
 
             BigDecimal bd2 = new BigDecimal(253.43);
-
 
 
             Scanner sc = new Scanner(System.in);
@@ -254,7 +259,7 @@ public class Main {
 
             System.out.println("---------------------INSERT IN DB--------------------------");
             Document doc = new Document("name", search);
-            nutrientsCollection.totalNutrients.entrySet().stream().forEach(entry -> doc.append(entry.getValue().get("label").toString(), entry.getValue() ));
+            nutrientsCollection.totalNutrients.entrySet().stream().forEach(entry -> doc.append(entry.getValue().get("label").toString(), entry.getValue()));
             //Insert(doc);
 
             //CREATE MAP WITH ELEMENT AND ITS DETAILS

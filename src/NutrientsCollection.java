@@ -10,9 +10,6 @@ public class NutrientsCollection {
     public Map<String, LinkedHashMap<String, Object>> totalNutrientsKCal;
 
 
-
-
-
     public Map<String, LinkedHashMap<String, Object>> getTotalNutrients() {
         return totalNutrients;
     }

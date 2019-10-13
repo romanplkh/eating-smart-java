@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0384e9f-7c72-4aea-9577-20b7947943ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/docs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Roman.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Nutrients.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EatingSmart.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EatingSmart.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/API.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NutrientsCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NutrientsCollection.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +54,7 @@
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.19669117" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -83,6 +85,9 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INTERFACES" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -102,7 +107,7 @@
       <workItem from="1570403644122" duration="771000" />
       <workItem from="1570404456463" duration="421000" />
       <workItem from="1570404916085" duration="388000" />
-      <workItem from="1570903404001" duration="3464000" />
+      <workItem from="1570903404001" duration="15831000" />
     </task>
     <servers />
   </component>
@@ -121,5 +126,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Nutrients.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
