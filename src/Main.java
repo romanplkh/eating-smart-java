@@ -30,7 +30,7 @@ public class Main {
             API api = new API();
            Nutrients n = new Nutrients();
 
-           n.getNutrients(api.getData("1 egg"));
+           n.getNutrients(api.getData("1 apple"));
 
 
 

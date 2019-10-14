@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0384e9f-7c72-4aea-9577-20b7947943ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Roman.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Nutrients.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Calories.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MainNutrients.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Vitamins.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NutrientsCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NutrientsCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Nutrients.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nutrients.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NutritientsDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NutritientsDetails.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +106,8 @@
       <workItem from="1570403644122" duration="771000" />
       <workItem from="1570404456463" duration="421000" />
       <workItem from="1570404916085" duration="388000" />
-      <workItem from="1570903404001" duration="15831000" />
+      <workItem from="1570903404001" duration="15962000" />
+      <workItem from="1571010379748" duration="9893000" />
     </task>
     <servers />
   </component>
@@ -126,16 +126,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Nutrients.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
