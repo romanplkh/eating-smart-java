@@ -1,5 +1,5 @@
+import Models.NutritientsDetails;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,7 +32,7 @@ public class Main {
 
            n.getNutrients("string");
 
-            System.out.println(n.getMainNutrientsGrams().carbs.get(Values.quantity.toString()));
+            System.out.println(n.getMainNutrientsGrams().getCarbs().get("label"));
 
 
 
@@ -302,11 +301,11 @@ public class Main {
             Map<String, NutritientsDetails> filtered = nutrientsDetailsMap.entrySet().stream().filter(obj -> fatAbbr.indexOf(obj.getKey()) != -1).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
             //SORT BY KEYS
-//            Map<String, NutritientsDetails> newMapSortedByKey = nutrientsDetailsMap.entrySet().stream()
-//                    .sorted(Map.Entry.<String, NutritientsDetails>comparingByKey())
+//            Map<String, Models.NutritientsDetails> newMapSortedByKey = nutrientsDetailsMap.entrySet().stream()
+//                    .sorted(Map.Entry.<String, Models.NutritientsDetails>comparingByKey())
 //                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
             //DISPLAY WHAT IN
-            NutritientsDetails fat = nutrientsDetailsMap.get(Types.FAPU.toString());
+
 
             conn.disconnect();
 

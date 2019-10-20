@@ -1,3 +1,5 @@
+package Models;
+
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.Map;

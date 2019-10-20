@@ -1,8 +1,9 @@
-import com.fasterxml.jackson.core.type.TypeReference;
+import Models.Calories;
+import Models.MainNutrients;
+import Models.NutritientsDetails;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -79,13 +80,13 @@ public class Nutrients {
 //                //Return value for each field LABEL-AMOUNT-UNIT
 //                JsonNode field = totalNutrColl.get(fieldName);
 //                //PARSE TO MODEL
-//                Map<String, NutritientsDetails> jsonMap = om.readValue(field.toString(), LinkedHashMap.class);
+//                Map<String, Models.NutritientsDetails> jsonMap = om.readValue(field.toString(), LinkedHashMap.class);
 //                test.add(jsonMap);
 //            }
 
 
 
-          //  Map<String, LinkedHashMap<String, NutritientsDetails> > mapIngredients = om.readValue(totalNutrColl.toString(), LinkedHashMap.class);
+          //  Map<String, LinkedHashMap<String, Models.NutritientsDetails> > mapIngredients = om.readValue(totalNutrColl.toString(), LinkedHashMap.class);
 
 
            //JsonNode protein =  response.get("totalNutrients").at("/PROCT");

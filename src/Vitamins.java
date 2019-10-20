@@ -1,3 +1,5 @@
+import Models.NutritientsDetails;
+
 import java.util.HashMap;
 import java.util.Map;
 
