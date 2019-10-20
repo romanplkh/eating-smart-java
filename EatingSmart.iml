@@ -10,7 +10,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../eating-smart-java/jackson-annotations-2.10.0.pr3.jar!/" />
+          <root url="jar://$MODULE_DIR$/jackson-annotations-2.10.0.pr3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../eating-smart-java/jackson-core-2.10.0.pr3.jar!/" />
+          <root url="jar://$MODULE_DIR$/jackson-core-2.10.0.pr3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +28,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../eating-smart-java/jackson-databind-2.10.0.pr3.jar!/" />
+          <root url="jar://$MODULE_DIR$/jackson-databind-2.10.0.pr3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -39,6 +39,30 @@
       <library>
         <CLASSES>
           <root url="jar://E:/java/mongo-java-driver-3.11.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../java_jars/jackson-annotations-2.9.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/../java_jars/jackson-core-2.9.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/../java_jars/jackson-databind-2.9.9.3.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/../java_jars/jackson-annotations-2.9.9-javadoc.jar!/" />
+          <root url="jar://$MODULE_DIR$/../java_jars/jackson-core-2.9.9-javadoc.jar!/" />
+          <root url="jar://$MODULE_DIR$/../java_jars/jackson-databind-2.9.9.3-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../java_jars/mongo-java-driver-3.11.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

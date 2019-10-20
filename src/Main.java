@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,8 +31,9 @@ public class Main {
             API api = new API();
            Nutrients n = new Nutrients();
 
-           n.getNutrients(api.getData("1 apple"));
+           n.getNutrients("string");
 
+            System.out.println(n.getMainNutrientsGrams().carbs.get(Values.quantity.toString()));
 
 
 
@@ -72,11 +74,11 @@ public class Main {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        Map<String, Object> jsonMap = objectMapper.readValue(myDoc2.toJson(),
-                new TypeReference<>() {
-                });
+//        Map<String, Object> jsonMap = objectMapper.readValue(myDoc2.toJson(),
+//                new TypeReference<>() {
+//                });
 
-        jsonMap.entrySet().stream().forEach(entry -> System.out.println(entry.getKey()));
+        //jsonMap.entrySet().stream().forEach(entry -> System.out.println(entry.getKey()));
 
     }
 

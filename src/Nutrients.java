@@ -9,6 +9,34 @@ import java.util.stream.Collectors;
 
 public class Nutrients {
 
+    public MainNutrients getMainNutrientsGrams() {
+        return mainNutrientsGrams;
+    }
+
+    public void setMainNutrientsGrams(MainNutrients mainNutrientsGrams) {
+        this.mainNutrientsGrams = mainNutrientsGrams;
+    }
+
+    public MainNutrients getMainNutrientsDaily() {
+        return mainNutrientsDaily;
+    }
+
+    public void setMainNutrientsDaily(MainNutrients mainNutrientsDaily) {
+        this.mainNutrientsDaily = mainNutrientsDaily;
+    }
+
+    public Vitamins getVitamins() {
+        return vitamins;
+    }
+
+    public void setVitamins(Vitamins vitamins) {
+        this.vitamins = vitamins;
+    }
+
+    private MainNutrients mainNutrientsGrams;
+    private MainNutrients mainNutrientsDaily;
+    private Vitamins vitamins;
+
     private ArrayList<Map<String, NutritientsDetails> > test = new ArrayList();
 
     private  LinkedHashMap<String, String> vits = new LinkedHashMap<>();
@@ -18,12 +46,25 @@ public class Nutrients {
     }
 
 
+    public void fillColletions(JsonNode data){
+        ObjectMapper om = new ObjectMapper();
+        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        JsonNode nutrientsGramsData= data.get("totalNutrients");
+        JsonNode nutrientsDailyData = data.get("totalDaily");
+
+    }
 
 
 
-    public void getNutrients(JsonNode response) {
+
+
+
+
+    public void getNutrients(String search) {
 
         try {
+
+           JsonNode response = new API().getData("1 apple");
             //GET ALL KEY-VALUES
             JsonNode totalNutrColl = response.get("totalNutrients");
             Iterator<String> allProps = totalNutrColl.fieldNames();
@@ -51,6 +92,7 @@ public class Nutrients {
            JsonNode totalNutrientsG =  response.get("totalNutrients");
             Map<String, LinkedHashMap<String, Object>> jsonMap = om.readValue(totalNutrientsG.toString(), LinkedHashMap.class);
             MainNutrients totalNutr = om.readValue(totalNutrientsG.toString(), MainNutrients.class);
+            this.mainNutrientsGrams = totalNutr;
             JsonNode totalCaloris = response.get("totalNutrientsKCal");
             Calories cals = om.readValue(totalCaloris.toString(), Calories.class);
 
