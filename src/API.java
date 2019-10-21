@@ -8,15 +8,13 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
 public class API {
 
@@ -31,7 +29,9 @@ public class API {
     }
 
     private void init() {
-        this.mongoClient = MongoClients.create("mongodb+srv://roman:Lovelife89!@nutrients-lmd94.mongodb.net/admin?retryWrites=true&w=majority");
+        Properties myProperties = Helpers.getProperties();
+        String connectionUrl = myProperties.getProperty("mongodb.url");
+        this.mongoClient = MongoClients.create(connectionUrl);
         getCredentials();
     }
 
@@ -41,6 +41,9 @@ public class API {
             MongoCollection<Document> admin = db.getCollection("Creds");
             Document creds = admin.find().first();
             //Get credentials for API
+            assert creds != null;
+            assert apiId != null;
+            assert baseUrl != null;
             this.apiId = creds.get("app_id").toString();
             this.apiKey = creds.get("app_key").toString();
             this.baseUrl = new URL(creds.get("base_url").toString() + "app_id=" + this.apiId + "&" + "app_key=" + this.apiKey + "&ingr=");
@@ -73,6 +76,9 @@ public class API {
             return null;
         }
     }
+
+
+
 
 
 //    public Map<String, Object> getMappedValue(Document doc) {

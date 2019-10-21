@@ -27,12 +27,17 @@ public class Main {
         try {
 
 
-            API api = new API();
-           Nutrients n = new Nutrients();
+            App app = new App();
 
-           n.getNutrients("string");
 
-            System.out.println(n.getMainNutrientsGrams().getCarbs().get("label"));
+            app.queryData("1 egg");
+
+//            API api = new API();
+//           Nutrients n = new Nutrients();
+//
+//           n.getNutrients("string");
+//
+//            System.out.println(n.getMainNutrientsGrams().getCarbs().get("label"));
 
 
 
