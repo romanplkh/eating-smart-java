@@ -82,7 +82,7 @@
 //
 //
 //
-//            Vitamins v = new Vitamins();
+//            Models.Vitamins v = new Models.Vitamins();
 //            //MAP THAT HOLD ALL Nutriens as Objects NutrientDetails
 //            Map<String, NutritientsDetails>  myCOllVitamins = new HashMap<>();
 //
@@ -123,7 +123,7 @@
 //                    LinkedHashMap::new));
 //
 //
-//            //Set collection to Class Vitamins
+//            //Set collection to Class Models.Vitamins
 //            v.vitsColl = filtered;
 //
 //
