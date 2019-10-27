@@ -65,12 +65,6 @@ public class API {
             JsonNode nutrientsCollection = objectMapper.readTree(response);
             conn.disconnect();
             return nutrientsCollection;
-        } catch (MalformedURLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        } catch (UnsupportedEncodingException e) {
-            System.out.println(e.getMessage());
-            return null;
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return null;

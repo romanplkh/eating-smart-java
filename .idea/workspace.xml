@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0384e9f-7c72-4aea-9577-20b7947943ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/UI/SmartEating.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/SmartEating.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/API.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Nutrients.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nutrients.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vitamins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Vitamins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/NutritientsDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/NutritientsDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Vitamins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Vitamins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/SmartEating.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/SmartEating.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/SmartEating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/SmartEating.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +66,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.19669117" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -126,6 +128,8 @@
       <workItem from="1571609093649" duration="9315000" />
       <workItem from="1571658012594" duration="11000" />
       <workItem from="1571696933088" duration="9708000" />
+      <workItem from="1571751280108" duration="1463000" />
+      <workItem from="1572195775036" duration="5202000" />
     </task>
     <servers />
   </component>
@@ -146,6 +150,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/App.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="db.collection" language="JAVA" />

@@ -1,4 +1,6 @@
 import Models.MainNutrients;
+import Models.NutritientsDetails;
+import Models.Vitamins;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.mongodb.*;
 import com.mongodb.client.ClientSession;
@@ -6,14 +8,15 @@ import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.mongodb.WriteConcern.*;
 import static com.mongodb.client.model.Filters.*;
 
 public class Controller {
-
-
     //!FROM DB
     public Document getNutritionsDb(String search){
         DB db = new DB();
@@ -59,7 +62,46 @@ public class Controller {
     }
 
 
+    public Map<String, NutritientsDetails> extractVitamins(Map<String, LinkedHashMap<String, Object>> vitaminsDaily) {
 
+        Map<String, NutritientsDetails> filteredVitamins = new HashMap<>();
+        ArrayList<String> filterWords = new ArrayList<String>();
+        filterWords.add("FAT");
+        filterWords.add("FASAT");
+        filterWords.add("FAMS");
+        filterWords.add("FAPU");
+        filterWords.add("ENERC_KCAL");
+        filterWords.add("CHOCDF");
+        filterWords.add("FIBTG");
+        filterWords.add("SUGAR");
+        filterWords.add("PROCNT");
+
+
+        vitaminsDaily.forEach((key, val) -> {
+
+            if (filterWords.indexOf(key) == -1) {
+                String label = val.get("label").toString();
+                double quantity = Double.parseDouble(val.get("quantity").toString());
+                String unit = val.get("unit").toString();
+
+                //Build Object NutrientsDetails
+                NutritientsDetails p = new NutritientsDetails(label, quantity, unit);
+
+                //Push Nutrients details to Collection
+                filteredVitamins.put(label, p);
+            }
+
+        });
+
+        //FILTERED VITAMINS
+//        Map<String, NutritientsDetails> filtered = filteredVitamins.entrySet().stream().filter(obj -> filterWords.indexOf(obj.getKey()) == -1).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1,
+//                LinkedHashMap::new));
+
+
+        //Set collection to Class Models.Vitamins
+        return filteredVitamins;
+
+    }
 
 
 

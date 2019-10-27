@@ -1,5 +1,6 @@
 import Models.MainNutrients;
 import Models.NutritientsDetails;
+import Models.Vitamins;
 import UI.SmartEating;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -10,6 +11,7 @@ import com.mongodb.client.*;
 import org.bson.Document;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
@@ -26,17 +28,33 @@ public class Main {
 
     public static void main(String[] args) {
         //GUI
-        //SmartEating gui = new SmartEating();
-        //gui.setVisible(true);
+//        JFrame gui = new JFrame("SmartEating");
+//
+//        gui.setContentPane(new SmartEating().panelMain);
+//        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        gui.pack();
+//        gui.setVisible(true);
+//
+//        SmartEating ui = new SmartEating();
+//        System.out.println(ui.getButton1().getAction());
+
+
+
         
 
         try {
 
             App app = new App();
 
+            app.queryData("1 egg");
 
-           //MainNutrients grams =  app.queryData("1 egg").getMainNutrientsGrams();
-           MainNutrients value = app.queryData("1 apple").getMainNutrientsDaily();
+
+            app.getVitamins().getVitaminsCollection().entrySet().stream().forEach(kv -> {
+                System.out.println(kv.getKey() + " : " + kv.getValue().quantity);
+            });
+
+
+
 
            
 

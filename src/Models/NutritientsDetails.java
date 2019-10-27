@@ -1,5 +1,7 @@
 package Models;
 
+import java.text.NumberFormat;
+
 public class NutritientsDetails {
 
     public String label;
@@ -21,7 +23,9 @@ public class NutritientsDetails {
     }
 
     public void setQuantity(double quantity) {
-        this.quantity = quantity;
+        NumberFormat num = NumberFormat.getNumberInstance();
+        num.setMaximumFractionDigits(2);
+        this.quantity = Double.parseDouble(num.format(quantity));
     }
 
     public String getUnit() {
@@ -33,9 +37,9 @@ public class NutritientsDetails {
     }
 
     public NutritientsDetails(String label, double quantity, String unit) {
-        this.label = label;
-        this.quantity = quantity;
-        this.unit = unit;
+        setLabel(label);
+        setQuantity(quantity);
+        setUnit(unit);
     }
 
 
