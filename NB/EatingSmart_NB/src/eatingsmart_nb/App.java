@@ -34,12 +34,14 @@ public class App {
 
             if (foundInDb.size() > 0) {
                 //GET DATA FROM DATABASE
+                System.out.println("********************FETCHED FROM DATABASE****************************");
                 totalNutrients = foundInDb.get("totalNutrients").toString();
                 totalDaily = foundInDb.get("totalDaily").toString();
                 totalNutrientsKCal = foundInDb.get("totalNutrientsKCal").toString();
 
             } else {
                 //GET DATA FROM API
+                 System.out.println("********************FETCHED FROM API****************************");
                 JsonNode data = controller.getNutritionsAPI(search.toLowerCase());
                 totalNutrients = data.get("totalNutrients").toString();
                 totalDaily = data.get("totalDaily").toString();

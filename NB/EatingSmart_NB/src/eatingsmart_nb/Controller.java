@@ -46,7 +46,7 @@ public class Controller {
                 .append("totalDaily", totalDaily)
                 .append("totalNutrientsKCal", totalNutrKCal);
 
-        db.collection.insertOne(nutrientsData);;
+        db.collection.insertOne(nutrientsData);
     }
 
 
