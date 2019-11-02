@@ -28,15 +28,17 @@ public class Main {
 
     public static void main(String[] args) {
         //GUI
-//        JFrame gui = new JFrame("SmartEating");
-//
-//        gui.setContentPane(new SmartEating().panelMain);
-//        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        gui.pack();
-//        gui.setVisible(true);
-//
-//        SmartEating ui = new SmartEating();
-//        System.out.println(ui.getButton1().getAction());
+        JFrame gui = new JFrame("SmartEating");
+
+        gui.setContentPane(new SmartEating().panelMain);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gui.pack();
+        gui.setVisible(true);
+
+        SmartEating ui = new SmartEating();
+
+
+
 
 
 
@@ -44,14 +46,12 @@ public class Main {
 
         try {
 
-            App app = new App();
-
-            app.queryData("1 egg");
-
-
-            app.getVitamins().getVitaminsCollection().entrySet().stream().forEach(kv -> {
-                System.out.println(kv.getKey() + " : " + kv.getValue().quantity);
-            });
+//            App app = new App();
+//
+//            app.queryData("1 egg");
+//
+//
+//
 
 
 

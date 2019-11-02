@@ -1,3 +1,4 @@
+package eatingsmart_nb;
 import Models.Calories;
 import Models.MainNutrients;
 import Models.Vitamins;
@@ -5,8 +6,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.bson.Document;
 import java.util.LinkedHashMap;
+import org.bson.Document;
 
 public class App {
 
