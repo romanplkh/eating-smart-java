@@ -12,19 +12,77 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultKeyedValuesDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
  * @author Roman
  */
 public class AppForm extends javax.swing.JFrame {
-private  App app;
+
+    private App app;
+
     /**
      * Creates new form AppForm
      */
     public AppForm() {
         initComponents();
-         app = new App();
+        app = new App();
+        panLabel.setVisible(false);
+
+        //DATASET PIE
+        DefaultPieDataset data = new DefaultKeyedValuesDataset();
+        data.setValue("Category 1", 43.2);
+        data.setValue("Category 2", 27.9);
+        data.setValue("Category 3", 79.5);
+// create a chart...
+        JFreeChart chart = ChartFactory.createPieChart(
+                "Sample Pie Chart",
+                data,
+                true, // legend?
+                true, // tooltips?
+                false // URLs?
+        );
+
+        //DATASET BAR
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(46, "Gold medals", "USA");
+        dataset.setValue(38, "Gold medals", "China");
+        dataset.setValue(29, "Gold medals", "UK");
+        dataset.setValue(22, "Gold medals", "Russia");
+        dataset.setValue(13, "Gold medals", "South Korea");
+        dataset.setValue(11, "Gold medals", "Germany");
+
+        //BAR CONFIG
+        JFreeChart bar = ChartFactory.createBarChart("My Bar", "Text1", "Gold medals", dataset, PlotOrientation.VERTICAL, false, true, false);
+
+        ChartPanel cp2 = new ChartPanel(bar);
+        cp2.setSize(250, 250);
+        panBar.add(cp2);
+        testPanel.validate();
+
+        cp2.setMaximumDrawHeight(300);
+        cp2.setMaximumDrawWidth(300);
+        cp2.getParent().invalidate();
+
+        //PIE CONFIG
+        ChartPanel myChart = new ChartPanel(chart);
+        myChart.setMouseWheelEnabled(true);
+        myChart.setSize(300, 300);
+
+        testPanel.add(myChart);
+        testPanel.validate();
+
+        myChart.setMaximumDrawHeight(300);
+        myChart.setMaximumDrawWidth(300);
+        myChart.getParent().invalidate();
+
     }
 
     /**
@@ -43,38 +101,64 @@ private  App app;
         lstVitamins = new javax.swing.JList<>();
         txtSearch = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         grdNutrients = new javax.swing.JTable();
+        panLabel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblCalories = new javax.swing.JLabel();
+        lblFat = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblSatD = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        lblMonoD = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblPolyD = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel21 = new javax.swing.JLabel();
+        jSeparator10 = new javax.swing.JSeparator();
+        lblCarbsD = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jSeparator11 = new javax.swing.JSeparator();
+        lblProteinD = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jSeparator12 = new javax.swing.JSeparator();
+        lblFiberD = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jSeparator13 = new javax.swing.JSeparator();
+        lblSugarD = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jSeparator14 = new javax.swing.JSeparator();
+        jLabel29 = new javax.swing.JLabel();
+        lblFatMg = new javax.swing.JLabel();
+        lblSaturatedMg = new javax.swing.JLabel();
+        lblMonoG = new javax.swing.JLabel();
+        lblPolyG = new javax.swing.JLabel();
+        lblCarbG = new javax.swing.JLabel();
+        lblProteinG = new javax.swing.JLabel();
+        lblFiberG = new javax.swing.JLabel();
+        lblSugarG = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        testPanel = new javax.swing.JPanel();
+        panBar = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -101,232 +185,50 @@ private  App app;
         });
         jScrollPane1.setViewportView(lstVitamins);
 
-        jLabel2.setText("jLabel2");
+        jPanel2.setLayout(null);
 
-        jLabel3.setText("jLabel3");
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setText("Energy:");
+        jPanel2.add(jLabel11);
+        jLabel11.setBounds(20, 70, 50, 15);
 
-        jLabel4.setText("jLabel4");
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setText("Fat:");
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(180, 70, 60, 15);
 
-        jLabel5.setText("jLabel5");
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel17.setText("Carbohydrate:");
+        jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jPanel2.add(jLabel17);
+        jLabel17.setBounds(180, 100, 110, 15);
 
-        jLabel6.setText("jLabel6");
-
-        jLabel7.setText("jLabel7");
-
-        jLabel8.setText("jLabel8");
-
-        jLabel9.setText("jLabel9");
-
-        jLabel10.setText("jLabel10");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(90, 90, 90)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addComponent(jLabel9)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel10)))
-                                .addGap(98, 98, 98))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel8)))
-                .addContainerGap(253, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(jLabel9))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel10)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel7)))
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Amount (mg)", jPanel1);
-
-        jLabel20.setText("jLabel2");
-
-        jLabel21.setText("jLabel3");
-
-        jLabel22.setText("jLabel4");
-
-        jLabel23.setText("jLabel5");
-
-        jLabel24.setText("jLabel6");
-
-        jLabel25.setText("jLabel7");
-
-        jLabel26.setText("jLabel8");
-
-        jLabel27.setText("jLabel9");
-
-        jLabel28.setText("jLabel10");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel22))
-                .addGap(62, 62, 62)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel25))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel26))
-                .addContainerGap(276, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel26))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel24))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel22)
-                                .addContainerGap(289, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel28))
-                                .addContainerGap())))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel27)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-
-        jTabbedPane1.addTab("Daily Value %", jPanel3);
-
-        jLabel11.setText("jLabel2");
-
-        jLabel12.setText("jLabel3");
-
-        jLabel13.setText("jLabel4");
-
-        jLabel14.setText("jLabel5");
-
-        jLabel15.setText("jLabel6");
-
-        jLabel16.setText("jLabel7");
-
-        jLabel17.setText("jLabel8");
-
-        jLabel18.setText("jLabel9");
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel18.setText("Protein:");
+        jPanel2.add(jLabel18);
+        jLabel18.setBounds(20, 100, 90, 15);
 
         jLabel19.setText("jLabel10");
+        jPanel2.add(jLabel19);
+        jLabel19.setBounds(80, 70, 40, 14);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
-                .addGap(62, 62, 62)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel17))
-                .addContainerGap(276, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel17))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel15))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13)
-                                .addContainerGap(289, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel19))
-                                .addContainerGap())))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel18)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
+        jLabel40.setText("jLabel40");
+        jPanel2.add(jLabel40);
+        jLabel40.setBounds(210, 70, 40, 14);
+
+        jLabel41.setText("jLabel41");
+        jPanel2.add(jLabel41);
+        jLabel41.setBounds(280, 100, 40, 14);
+
+        jLabel42.setText("jLabel42");
+        jPanel2.add(jLabel42);
+        jLabel42.setBounds(80, 100, 40, 14);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Souces of calories");
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(60, 20, 220, 22);
 
         jTabbedPane1.addTab("Calories", jPanel2);
 
@@ -357,6 +259,241 @@ private  App app;
 
         jTabbedPane1.addTab("Vitamins", jScrollPane2);
 
+        panLabel.setBackground(new java.awt.Color(255, 255, 255));
+        panLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        panLabel.setDoubleBuffered(false);
+        panLabel.setMaximumSize(new java.awt.Dimension(200, 200));
+        panLabel.setName("panLabel"); // NOI18N
+        panLabel.setPreferredSize(new java.awt.Dimension(300, 300));
+        panLabel.setLayout(null);
+
+        jLabel3.setFont(new java.awt.Font("Candara Light", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Nutrition Facts");
+        panLabel.add(jLabel3);
+        jLabel3.setBounds(60, 20, 190, 36);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Calories");
+        panLabel.add(jLabel2);
+        jLabel2.setBounds(22, 89, 72, 20);
+
+        lblCalories.setText("CaloriesAmt");
+        panLabel.add(lblCalories);
+        lblCalories.setBounds(207, 88, 57, 20);
+
+        lblFat.setText("lblFatD");
+        lblFat.setAlignmentX(0.5F);
+        panLabel.add(lblFat);
+        lblFat.setBounds(210, 150, 33, 14);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel20.setText("Fat");
+        jLabel20.setAlignmentX(0.5F);
+        panLabel.add(jLabel20);
+        jLabel20.setBounds(20, 150, 29, 15);
+
+        jLabel4.setText("Saturated");
+        jLabel4.setAlignmentX(0.5F);
+        panLabel.add(jLabel4);
+        jLabel4.setBounds(30, 180, 48, 14);
+
+        lblSatD.setText("jLabel5");
+        lblSatD.setAlignmentX(0.5F);
+        panLabel.add(lblSatD);
+        lblSatD.setBounds(210, 180, 34, 14);
+
+        jLabel6.setText("Monosaturated");
+        jLabel6.setAlignmentX(0.5F);
+        panLabel.add(jLabel6);
+        jLabel6.setBounds(30, 210, 73, 14);
+
+        jSeparator6.setDoubleBuffered(true);
+        panLabel.add(jSeparator6);
+        jSeparator6.setBounds(20, 170, 250, 2);
+
+        jSeparator8.setDoubleBuffered(true);
+        panLabel.add(jSeparator8);
+        jSeparator8.setBounds(30, 200, 240, 10);
+
+        jSeparator9.setDoubleBuffered(true);
+        panLabel.add(jSeparator9);
+        jSeparator9.setBounds(30, 230, 240, 10);
+
+        lblMonoD.setText("jLabel7");
+        lblMonoD.setAlignmentX(0.5F);
+        panLabel.add(lblMonoD);
+        lblMonoD.setBounds(210, 210, 34, 14);
+
+        jLabel8.setText("Polysaturated");
+        jLabel8.setAlignmentX(0.5F);
+        panLabel.add(jLabel8);
+        jLabel8.setBounds(30, 240, 67, 14);
+
+        lblPolyD.setText("jLabel9");
+        lblPolyD.setAlignmentX(0.5F);
+        panLabel.add(lblPolyD);
+        lblPolyD.setBounds(210, 240, 34, 14);
+
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        panLabel.add(jSeparator2);
+        jSeparator2.setBounds(22, 115, 250, 10);
+
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jSeparator1.setPreferredSize(new java.awt.Dimension(50, 20));
+        panLabel.add(jSeparator1);
+        jSeparator1.setBounds(22, 62, 260, 20);
+        panLabel.add(jSeparator3);
+        jSeparator3.setBounds(30, 260, 240, 10);
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel21.setText("Carbohydrates");
+        jLabel21.setAlignmentX(0.5F);
+        panLabel.add(jLabel21);
+        jLabel21.setBounds(20, 270, 100, 15);
+
+        jSeparator10.setDoubleBuffered(true);
+        panLabel.add(jSeparator10);
+        jSeparator10.setBounds(20, 290, 252, 2);
+
+        lblCarbsD.setText("jLabel10");
+        panLabel.add(lblCarbsD);
+        lblCarbsD.setBounds(210, 270, 40, 14);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel22.setText("Protein");
+        jLabel22.setAlignmentX(0.5F);
+        panLabel.add(jLabel22);
+        jLabel22.setBounds(20, 300, 50, 15);
+
+        jSeparator11.setDoubleBuffered(true);
+        panLabel.add(jSeparator11);
+        jSeparator11.setBounds(20, 320, 252, 2);
+
+        lblProteinD.setText("jLabel10");
+        panLabel.add(lblProteinD);
+        lblProteinD.setBounds(210, 300, 40, 14);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel24.setText("Fiber");
+        jLabel24.setAlignmentX(0.5F);
+        panLabel.add(jLabel24);
+        jLabel24.setBounds(20, 330, 40, 15);
+
+        jSeparator12.setDoubleBuffered(true);
+        panLabel.add(jSeparator12);
+        jSeparator12.setBounds(20, 350, 252, 2);
+
+        lblFiberD.setText("jLabel10");
+        panLabel.add(lblFiberD);
+        lblFiberD.setBounds(210, 330, 40, 14);
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel26.setText("Sugar");
+        jLabel26.setAlignmentX(0.5F);
+        panLabel.add(jLabel26);
+        jLabel26.setBounds(20, 360, 40, 15);
+
+        jSeparator13.setDoubleBuffered(true);
+        panLabel.add(jSeparator13);
+        jSeparator13.setBounds(20, 380, 252, 2);
+
+        lblSugarD.setText("jLabel10");
+        panLabel.add(lblSugarD);
+        lblSugarD.setBounds(210, 360, 40, 14);
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel28.setText("Carbohydrates");
+        jLabel28.setAlignmentX(0.5F);
+        panLabel.add(jLabel28);
+        jLabel28.setBounds(20, 390, 90, 15);
+
+        jSeparator14.setDoubleBuffered(true);
+        panLabel.add(jSeparator14);
+        jSeparator14.setBounds(20, 410, 252, 2);
+
+        jLabel29.setText("jLabel10");
+        panLabel.add(jLabel29);
+        jLabel29.setBounds(210, 390, 40, 14);
+
+        lblFatMg.setText("jLabel30");
+        panLabel.add(lblFatMg);
+        lblFatMg.setBounds(60, 150, 40, 14);
+
+        lblSaturatedMg.setText("jLabel31");
+        panLabel.add(lblSaturatedMg);
+        lblSaturatedMg.setBounds(100, 180, 40, 14);
+
+        lblMonoG.setText("jLabel32");
+        panLabel.add(lblMonoG);
+        lblMonoG.setBounds(120, 210, 40, 14);
+
+        lblPolyG.setText("jLabel33");
+        panLabel.add(lblPolyG);
+        lblPolyG.setBounds(120, 240, 40, 14);
+
+        lblCarbG.setText("jLabel34");
+        panLabel.add(lblCarbG);
+        lblCarbG.setBounds(120, 270, 40, 14);
+
+        lblProteinG.setText("jLabel35");
+        panLabel.add(lblProteinG);
+        lblProteinG.setBounds(80, 300, 40, 14);
+
+        lblFiberG.setText("jLabel36");
+        panLabel.add(lblFiberG);
+        lblFiberG.setBounds(70, 330, 40, 14);
+
+        lblSugarG.setText("jLabel37");
+        panLabel.add(lblSugarG);
+        lblSugarG.setBounds(70, 360, 40, 14);
+
+        jLabel38.setText("jLabel38");
+        panLabel.add(jLabel38);
+        jLabel38.setBounds(120, 390, 40, 14);
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel39.setText("%Daily Value *");
+        panLabel.add(jLabel39);
+        jLabel39.setBounds(180, 120, 90, 14);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("* Percent Daily Values are based on a 2000 calorie diet");
+        panLabel.add(jLabel7);
+        jLabel7.setBounds(20, 430, 240, 11);
+
+        testPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        testPanel.setPreferredSize(new java.awt.Dimension(300, 300));
+
+        javax.swing.GroupLayout testPanelLayout = new javax.swing.GroupLayout(testPanel);
+        testPanel.setLayout(testPanelLayout);
+        testPanelLayout.setHorizontalGroup(
+            testPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 298, Short.MAX_VALUE)
+        );
+        testPanelLayout.setVerticalGroup(
+            testPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 298, Short.MAX_VALUE)
+        );
+
+        panBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout panBarLayout = new javax.swing.GroupLayout(panBar);
+        panBar.setLayout(panBarLayout);
+        panBarLayout.setHorizontalGroup(
+            panBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 268, Short.MAX_VALUE)
+        );
+        panBarLayout.setVerticalGroup(
+            panBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         jMenu1.setText("File");
 
         jMenuItem1.setText("Exit");
@@ -382,34 +519,52 @@ private  App app;
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(panBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtSearch, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(281, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(testPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSearch))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14)
+                .addComponent(panBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(panLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(testPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 56, Short.MAX_VALUE))
         );
 
         pack();
@@ -418,57 +573,51 @@ private  App app;
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         //Click Event in C#
         //Create Message Box 
-        
+
         try {
-            
-                app.queryData("1 egg");
-                
-                List<String> vitamins = new ArrayList();
-                
-                
-                app.getVitamins().getVitaminsCollection().entrySet().stream().forEach(entry -> {
-                    vitamins.add(entry.getValue().label + " - " + entry.getValue().quantity + "" + entry.getValue().unit);
-                });
-                
-                //Listbox and combo use DefaultListModel
-                DefaultListModel listModel = new DefaultListModel();
-                
-                
-                 Collections.sort(vitamins); 
-                for(String s : vitamins){
-                    listModel.addElement(s);
-                }
-                
-                
-                lstVitamins.setModel(listModel);
-                
-                
-                  //Table 
-                DefaultTableModel tableModel = (DefaultTableModel)grdNutrients.getModel();
-                
-                
-                //RowData
-                Object rowData[] = new Object[4];
-                
-                app.getVitamins().getVitaminsCollection().entrySet().stream().forEach(entry -> {
-                   rowData[0] = entry.getValue().label;
-                   rowData[1] = entry.getValue().quantity;
-                   rowData[2] = entry.getValue().unit;
-                   tableModel.addRow(rowData);
-                });
-               
-                
-                grdNutrients.setAutoCreateRowSorter(true);
-                
-            
+
+            //SEARCH
+            app.queryData("1 cup rice,\n 10 oz chickpeas");
+
+            if (!app.getCalories().getEnergyCal().isEmpty()) {
+                panLabel.setVisible(true);
+            }
+
+            List<String> vitamins = new ArrayList();
+
+            app.getVitamins().getVitaminsCollection().entrySet().stream().forEach(entry -> {
+                vitamins.add(entry.getValue().label + " - " + entry.getValue().quantity + "" + entry.getValue().unit);
+            });
+
+            //Listbox and combo use DefaultListModel
+            DefaultListModel listModel = new DefaultListModel();
+
+            Collections.sort(vitamins);
+            for (String s : vitamins) {
+                listModel.addElement(s);
+            }
+
+            lstVitamins.setModel(listModel);
+
+            //Table 
+            DefaultTableModel tableModel = (DefaultTableModel) grdNutrients.getModel();
+
+            //RowData
+            Object rowData[] = new Object[4];
+
+            app.getVitamins().getVitaminsCollection().entrySet().stream().forEach(entry -> {
+                rowData[0] = entry.getValue().label;
+                rowData[1] = entry.getValue().quantity;
+                rowData[2] = entry.getValue().unit;
+                tableModel.addRow(rowData);
+            });
+
+            grdNutrients.setAutoCreateRowSorter(true);
+
         } catch (Exception e) {
-            
+
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-       
-    
-        
-        
 
         JOptionPane.showMessageDialog(this, app.getCalories().getCarbsCal().get("quantity"));
 
@@ -519,13 +668,8 @@ private  App app;
     private javax.swing.JButton btnSearch;
     private javax.swing.JTable grdNutrients;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -533,31 +677,62 @@ private  App app;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblCalories;
+    private javax.swing.JLabel lblCarbG;
+    private javax.swing.JLabel lblCarbsD;
+    private javax.swing.JLabel lblFat;
+    private javax.swing.JLabel lblFatMg;
+    private javax.swing.JLabel lblFiberD;
+    private javax.swing.JLabel lblFiberG;
+    private javax.swing.JLabel lblMonoD;
+    private javax.swing.JLabel lblMonoG;
+    private javax.swing.JLabel lblPolyD;
+    private javax.swing.JLabel lblPolyG;
+    private javax.swing.JLabel lblProteinD;
+    private javax.swing.JLabel lblProteinG;
+    private javax.swing.JLabel lblSatD;
+    private javax.swing.JLabel lblSaturatedMg;
+    private javax.swing.JLabel lblSugarD;
+    private javax.swing.JLabel lblSugarG;
     private javax.swing.JList<String> lstVitamins;
+    private javax.swing.JPanel panBar;
+    private javax.swing.JPanel panLabel;
+    private javax.swing.JPanel testPanel;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

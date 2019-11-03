@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Calories {
     Map<String, Object> energyCal;
-    Map<String, Object> preteinCal;
+    Map<String, Object> proteinCal;
     Map<String, Object> fatCal;
     Map<String, Object> carbsCal;
 
@@ -19,12 +19,12 @@ public class Calories {
     }
 
     public Map<String, Object> getPreteinCal() {
-        return preteinCal;
+        return proteinCal;
     }
 
     @JsonSetter("PROCNT_KCAL")
     public void setPreteinCal(Map<String, Object> preteinCal) {
-        this.preteinCal = preteinCal;
+        this.proteinCal = preteinCal;
     }
 
     public Map<String, Object> getFatCal() {
