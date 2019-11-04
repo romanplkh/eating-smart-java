@@ -2,17 +2,20 @@ package Models;
 
 import java.text.NumberFormat;
 
-public class NutritientsDetails {
+public class VitaminDetails {
+    private String label;
+    private double quantity;
+    private String unit;
 
-    public String label;
-    public double quantity;
-    public String unit;
-
+    public VitaminDetails(String label, double quantity, String unit) {
+        setLabel(label);
+        setQuantity(quantity);
+        setUnit(unit);
+    }
 
     public String getLabel() {
         return label;
     }
-
 
     public void setLabel(String label) {
         this.label = label;
@@ -35,12 +38,5 @@ public class NutritientsDetails {
     public void setUnit(String unit) {
         this.unit = unit;
     }
-
-    public NutritientsDetails(String label, double quantity, String unit) {
-        setLabel(label);
-        setQuantity(quantity);
-        setUnit(unit);
-    }
-
 
 }
