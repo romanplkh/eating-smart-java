@@ -5,7 +5,7 @@
  */
 package Models;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.List;
 public class Nutrients {
     private MainNutrients mainNutrientsGramms;
     private MainNutrients mainNutrientsDaily;
-    private List<VitaminDetails> vitamins;
+    private Map<String, VitaminDetails> vitaminsCollection;
     private Calories calories;
 
     public MainNutrients getMainNutrientsGramms() {
@@ -22,6 +22,7 @@ public class Nutrients {
     }
 
     public void setMainNutrientsGramms(MainNutrients mainNutrientsGramms) {
+     
         this.mainNutrientsGramms = mainNutrientsGramms;
     }
 
@@ -33,13 +34,15 @@ public class Nutrients {
         this.mainNutrientsDaily = mainNutrientsDaily;
     }
 
-    public List<VitaminDetails> getVitamins() {
-        return vitamins;
+    public Map<String, VitaminDetails> getVitaminsCollection() {
+        return vitaminsCollection;
     }
 
-    public void setVitamins(List<VitaminDetails> vitamins) {
-        this.vitamins = vitamins;
+    public void setVitaminsCollection(Map<String, VitaminDetails> vitaminsCollection) {
+        this.vitaminsCollection = vitaminsCollection;
     }
+    
+    
 
     public Calories getCalories() {
         return calories;

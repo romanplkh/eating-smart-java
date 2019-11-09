@@ -5,8 +5,6 @@
  */
 package eatingsmart_nb;
 
-import Models.Calories;
-import Models.MainNutrients;
 import Models.Nutrients;
 
 /**
@@ -19,6 +17,6 @@ public interface IRepo {
 
     public boolean deleteData(String srch);
 
-    public void insertData(String search, MainNutrients totNutrG, MainNutrients totalDaily, Calories totalNutrKCal);
+    public void insertData(String search, Nutrients nutrients);
 
 }

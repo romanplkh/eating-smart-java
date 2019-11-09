@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0384e9f-7c72-4aea-9577-20b7947943ff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NutrientsCollection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/SmartEating.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/SmartEating.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/SmartEating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/SmartEating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/MainNutrients.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/MainNutrients.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/Nutrients.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/Nutrients.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/Vitamin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/UI/AppForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/UI/AppForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/Helpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/Helpers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/IRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/IRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/MongoDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/MongoDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/NutritientsDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/NutritientsDetails.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,6 +137,7 @@
       <workItem from="1572272391314" duration="751000" />
       <workItem from="1572367004889" duration="123000" />
       <workItem from="1572710209653" duration="2024000" />
+      <workItem from="1573264138166" duration="3937000" />
     </task>
     <servers />
   </component>

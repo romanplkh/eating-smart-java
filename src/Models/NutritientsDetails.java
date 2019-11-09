@@ -2,7 +2,7 @@ package Models;
 
 import java.text.NumberFormat;
 
-public class NutritientsDetails {
+public class VitaNutritientsDetails {
 
     public String label;
     public double quantity;

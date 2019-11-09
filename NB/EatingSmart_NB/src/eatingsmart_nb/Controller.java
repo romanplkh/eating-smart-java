@@ -15,6 +15,8 @@ public class Controller {
 
     public Nutrients queryData(String search) {
 
+        
+        //FROM DB
         Nutrients nutr = repo.getData(search.toLowerCase());
 
         if (nutr == null) {
@@ -26,7 +28,7 @@ public class Controller {
             repo.deleteData(search.toLowerCase());
 
             //INSERT FRESH DATA
-            repo.insertData(search.toLowerCase(), nutr.getMainNutrientsGramms(), nutr.getMainNutrientsDaily(), nutr.getCalories());
+            repo.insertData(search.toLowerCase(), nutr);
 
         }
 

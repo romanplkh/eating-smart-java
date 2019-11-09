@@ -10,8 +10,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import org.bson.Document;
@@ -47,33 +47,37 @@ public class Helpers {
         String main = "";
         String kcal = "";
         String daily = "";
-
-        if (dataApi != null) {
-            main = dataApi.get("totalNutrients").toString();
-            daily = dataApi.get("totalDaily").toString();
-            kcal = dataApi.get("totalNutrientsKCal").toString();
-        }
-
-        if (dataDb != null) {
-            main = dataDb.get("totalNutrients").toString();
-            daily = dataDb.get("totalDaily").toString();
-            kcal = dataDb.get("totalNutrientsKCal").toString();
-        }
+        String vitamins = "";
 
         Nutrients nutrients = new Nutrients();
         try {
+
             ObjectMapper om = new ObjectMapper();
             om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+            //GET FROM API
+            if (dataApi != null) {
+                main = dataApi.get("totalNutrients").toString();
+                daily = dataApi.get("totalDaily").toString();
+                kcal = dataApi.get("totalNutrientsKCal").toString();
+                nutrients.setVitaminsCollection(getVitamins(om.readValue(daily, LinkedHashMap.class)));
+            }
+
+            //GET FROM DB
+            if (dataDb != null) {
+                main = dataDb.get("totalNutrients").toString();
+                daily = dataDb.get("totalDaily").toString();
+                kcal = dataDb.get("totalNutrientsKCal").toString();
+                vitamins = dataDb.get("vitamins").toString();
+                nutrients.setVitaminsCollection(getVitamins(om.readValue(vitamins, LinkedHashMap.class)));
+            }
 
             MainNutrients mainNutrientsG = om.readValue(main, MainNutrients.class);
             MainNutrients mainNutrientsD = om.readValue(daily, MainNutrients.class);
             Calories kcals = om.readValue(kcal, Calories.class);
-            List<VitaminDetails> vitaminsList = extractVitamins(om.readValue(daily, LinkedHashMap.class));
-
             nutrients.setCalories(kcals);
             nutrients.setMainNutrientsDaily(mainNutrientsD);
             nutrients.setMainNutrientsGramms(mainNutrientsG);
-            nutrients.setVitamins(vitaminsList);
 
         } catch (JsonProcessingException e) {
             System.out.println(e.getMessage());
@@ -82,35 +86,42 @@ public class Helpers {
         return nutrients;
     }
 
-    public static List<VitaminDetails> extractVitamins(Map<String, LinkedHashMap<String, Object>> vitaminsDaily) {
+    
+    
+    private static Map<String, VitaminDetails> getVitamins(Map<String, LinkedHashMap<String, Object>> vitaminsDaily) {
 
-        List<VitaminDetails> filteredVitamins = new ArrayList<>();
-        ArrayList<String> filterWords = new ArrayList<String>();
-        filterWords.add("FAT");
-        filterWords.add("FASAT");
-        filterWords.add("FAMS");
-        filterWords.add("FAPU");
-        filterWords.add("ENERC_KCAL");
-        filterWords.add("CHOCDF");
-        filterWords.add("FIBTG");
-        filterWords.add("SUGAR");
-        filterWords.add("PROCNT");
+        //MAP THAT HOLD ALL Nutriens as Objects NutrientDetails
+        Map<String, VitaminDetails> myCOllVitamins = new HashMap<>();
+
+        ArrayList<String> filteredWords = new ArrayList<>();
+        filteredWords.add("FAT");
+        filteredWords.add("FASAT");
+        filteredWords.add("FAMS");
+        filteredWords.add("FAPU");
+        filteredWords.add("ENERC_KCAL");
+        filteredWords.add("CHOCDF");
+        filteredWords.add("FIBTG");
+        filteredWords.add("SUGAR");
+        filteredWords.add("PROCNT");
 
         vitaminsDaily.forEach((key, val) -> {
-            if (filterWords.indexOf(key) == -1) {
+
+            if (filteredWords.indexOf(key) == -1) {
                 String label = val.get("label").toString();
                 double quantity = Double.parseDouble(val.get("quantity").toString());
                 String unit = val.get("unit").toString();
-                //Build Object NutrientsDetails
+
+                //Build Object VitaminDetails
                 VitaminDetails p = new VitaminDetails(label, quantity, unit);
 
-                //Push Nutrients details to Collection
-                filteredVitamins.add(p);
+                //Push Vitamins details to Collection
+                myCOllVitamins.put(label, p);
             }
 
         });
 
-        return filteredVitamins;
+        return myCOllVitamins;
 
     }
+
 }

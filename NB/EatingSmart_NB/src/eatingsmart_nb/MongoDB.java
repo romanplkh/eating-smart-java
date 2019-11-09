@@ -1,7 +1,5 @@
 package eatingsmart_nb;
 
-import Models.Calories;
-import Models.MainNutrients;
 import Models.Nutrients;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,7 +18,7 @@ public class MongoDB implements IRepo {
     MongoCollection<Document> collection;
 
     public MongoDB(String database, String collection) {
-        MongoClient mongoClient = MongoClients.create(getConnectionString());
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://roman:Lovelife89!@nutrients-lmd94.mongodb.net/admin?retryWrites=true&w=majority");
         MongoDatabase db = mongoClient.getDatabase(database);
         this.collection = db.getCollection(collection);
     }
@@ -70,21 +68,23 @@ public class MongoDB implements IRepo {
     }
 
     @Override
-    public void insertData(String search, MainNutrients totNutrG, MainNutrients totalDaily, Calories totalNutrKCal) {
+    public void insertData(String search, Nutrients nutrients) {
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
-            String totalG = objectMapper.writeValueAsString(totNutrG);
-            String totalD = objectMapper.writeValueAsString(totalDaily);
-            String totalK = objectMapper.writeValueAsString(totalNutrKCal);
+            String totalG = objectMapper.writeValueAsString(nutrients.getMainNutrientsGramms());
+            String totalD = objectMapper.writeValueAsString(nutrients.getMainNutrientsDaily());
+            String totalK = objectMapper.writeValueAsString(nutrients.getCalories());
+            String vitamins = objectMapper.writeValueAsString(nutrients.getVitaminsCollection());
 
             Document nutrientsData = new Document("searchKeys", search)
                     .append("expiration", LocalDateTime.now().plusHours(24))
                     .append("totalNutrients", totalG)
                     .append("totalDaily", totalD)
-                    .append("totalNutrientsKCal", totalK);
+                    .append("totalNutrientsKCal", totalK)
+                    .append("vitamins", vitamins);
 
             this.collection.insertOne(nutrientsData);
 
