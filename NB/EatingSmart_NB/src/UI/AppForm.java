@@ -13,18 +13,22 @@ import eatingsmart_nb.Controller;
 import eatingsmart_nb.MongoDB;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultKeyedValuesDataset;
 import org.jfree.data.general.DefaultPieDataset;
@@ -48,8 +52,7 @@ public class AppForm extends javax.swing.JFrame {
         initComponents();
         app = new Controller(new MongoDB("EatingSmart", "Nutrients"), new API());
 
-        panLabel.setVisible(false);
-        testPanel.setVisible(false);
+        setInitialPanelsVisibility();
 
     }
 
@@ -65,8 +68,7 @@ public class AppForm extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
-        txtSearch = new javax.swing.JTextField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jVitaminsTable = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         grdNutrients = new javax.swing.JTable();
         panLabel = new javax.swing.JPanel();
@@ -109,8 +111,9 @@ public class AppForm extends javax.swing.JFrame {
         lblSugarG = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        testPanel = new javax.swing.JPanel();
-        panBar = new javax.swing.JPanel();
+        pieJPanel = new javax.swing.JPanel();
+        barJPanel = new javax.swing.JPanel();
+        txtSearch = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -132,6 +135,8 @@ public class AppForm extends javax.swing.JFrame {
                 btnSearchActionPerformed(evt);
             }
         });
+
+        jVitaminsTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         grdNutrients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,10 +163,10 @@ public class AppForm extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(grdNutrients);
 
-        jTabbedPane1.addTab("Vitamins", jScrollPane2);
+        jVitaminsTable.addTab("Vitamins", jScrollPane2);
 
         panLabel.setBackground(new java.awt.Color(255, 255, 255));
-        panLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        panLabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         panLabel.setDoubleBuffered(false);
         panLabel.setMaximumSize(new java.awt.Dimension(200, 200));
         panLabel.setName("panLabel"); // NOI18N
@@ -390,32 +395,36 @@ public class AppForm extends javax.swing.JFrame {
         panLabel.add(jLabel7);
         jLabel7.setBounds(20, 400, 290, 11);
 
-        testPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        testPanel.setPreferredSize(new java.awt.Dimension(250, 250));
+        pieJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pieJPanel.setPreferredSize(new java.awt.Dimension(400, 250));
+        pieJPanel.setVerifyInputWhenFocusTarget(false);
 
-        javax.swing.GroupLayout testPanelLayout = new javax.swing.GroupLayout(testPanel);
-        testPanel.setLayout(testPanelLayout);
-        testPanelLayout.setHorizontalGroup(
-            testPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+        javax.swing.GroupLayout pieJPanelLayout = new javax.swing.GroupLayout(pieJPanel);
+        pieJPanel.setLayout(pieJPanelLayout);
+        pieJPanelLayout.setHorizontalGroup(
+            pieJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
-        testPanelLayout.setVerticalGroup(
-            testPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pieJPanelLayout.setVerticalGroup(
+            pieJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+
+        barJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        barJPanel.setMinimumSize(new java.awt.Dimension(400, 250));
+
+        javax.swing.GroupLayout barJPanelLayout = new javax.swing.GroupLayout(barJPanel);
+        barJPanel.setLayout(barJPanelLayout);
+        barJPanelLayout.setHorizontalGroup(
+            barJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
+        );
+        barJPanelLayout.setVerticalGroup(
+            barJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 248, Short.MAX_VALUE)
         );
 
-        panBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout panBarLayout = new javax.swing.GroupLayout(panBar);
-        panBar.setLayout(panBarLayout);
-        panBarLayout.setHorizontalGroup(
-            panBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
-        );
-        panBarLayout.setVerticalGroup(
-            panBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 248, Short.MAX_VALUE)
-        );
+        txtSearch.setText("1 banana");
 
         jMenu1.setText("File");
 
@@ -442,45 +451,47 @@ public class AppForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addComponent(panLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pieJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 25, Short.MAX_VALUE)
+                .addComponent(jVitaminsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(panLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(panBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(382, 382, 382)
-                        .addComponent(testPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(121, 121, 121)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearch)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(testPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pieJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(barJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jVitaminsTable))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -524,10 +535,10 @@ public class AppForm extends javax.swing.JFrame {
     //PIE CHART CALORIES PROPORTION
     private void getCaloriesProportion(Calories cal) {
 
-        testPanel.setVisible(true);
+        pieJPanel.setVisible(true);
 
         //REFERSH PANEL FROM PREVIOUS CHART   
-        refreshChart();
+        refreshChart(pieJPanel);
         //DATASET PIE
         double carbsData = Double.valueOf(cal.getCarbsCal().get(QUANTITY).toString());
         double energyData = Double.valueOf(cal.getEnergyCal().get(QUANTITY).toString());
@@ -553,9 +564,9 @@ public class AppForm extends javax.swing.JFrame {
         PiePlot plot = (PiePlot) chart.getPlot();
         plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 10));
 
-        plot.setSectionPaint("Protein", Color.green);
-        plot.setSectionPaint("Fat", Color.yellow);
-        plot.setSectionPaint("Carbohydrates", Color.blue);
+        plot.setSectionPaint("Protein", Color.GREEN);
+        plot.setSectionPaint("Fat", Color.YELLOW);
+        plot.setSectionPaint("Carbohydrates", Color.MAGENTA);
 
         //CONFIGURE LABELS
         PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
@@ -563,17 +574,18 @@ public class AppForm extends javax.swing.JFrame {
         plot.setLabelGenerator(gen);
 
         //PIE CONFIG
-        ChartPanel myChart = new ChartPanel(chart, 350, 250, 300, 230, 300, 230, true, false, true, true, false, false);
+        ChartPanel myChart = new ChartPanel(chart, 400, 250, 350, 230, 350, 230, true, false, true, true, false, false);
         myChart.setMouseWheelEnabled(true);
 
         //HOW PIE IS SITTING IN JPANEL
-        testPanel.setLayout(new java.awt.BorderLayout());
-        testPanel.add(myChart, BorderLayout.CENTER);
-        testPanel.validate();
+        pieJPanel.setLayout(new java.awt.BorderLayout());
+        pieJPanel.add(myChart, BorderLayout.CENTER);
+        pieJPanel.validate();
     }
 
     private void getVitamins(Nutrients nutrients) {
         //SHOW VITAMINS
+        jVitaminsTable.setVisible(true);
         //Table 
         DefaultTableModel tableModel = (DefaultTableModel) grdNutrients.getModel();
 
@@ -595,7 +607,8 @@ public class AppForm extends javax.swing.JFrame {
     }
 
     private void getBar(MainNutrients nutrients) {
-
+        barJPanel.setVisible(true);
+        refreshChart(barJPanel);
         double carbs = Double.valueOf(nutrients.getCarbs().get(QUANTITY).toString());
         double fat = Double.valueOf(nutrients.getFatGeneral().get(QUANTITY).toString());
         double fiber = Double.valueOf(nutrients.getFiber().get(QUANTITY).toString());
@@ -604,85 +617,85 @@ public class AppForm extends javax.swing.JFrame {
 
         //DATASET BAR
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(carbs, "Nutrients gramms", "CARBS");
-        dataset.setValue(fat, "Nutrients gramms", "FAT");
-        dataset.setValue(fiber, "Nutrients gramms", "FIBER");
-        dataset.setValue(protein, "Nutrients gramms", "PROTEIN");
-        dataset.setValue(sugar, "Nutrients gramms", "SUGAR");
-        
+        dataset.setValue(carbs, "Nutrients gramms", "Carbs");
+        dataset.setValue(fat, "Nutrients gramms", "Fat");
+        dataset.setValue(fiber, "Nutrients gramms", "Fiber");
+        dataset.setValue(protein, "Nutrients gramms", "Protein");
+        dataset.setValue(sugar, "Nutrients gramms", "Sugar");
 
         //BAR CONFIG
-        JFreeChart bar = ChartFactory.createBarChart("Nutrients Gramms", "Text1", "Gold medals", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart bar = ChartFactory.createBarChart("Nutrients (G)", "", "Gramms", dataset, PlotOrientation.VERTICAL, false, true, false);
 
-        ChartPanel cp2 = new ChartPanel(bar);
-        cp2.setSize(250, 250);
-        panBar.add(cp2);
-        testPanel.validate();
+        ChartPanel barNutrientsPanel = new ChartPanel(bar);
+        barNutrientsPanel.setPreferredSize(new Dimension(400, 250));
 
-        cp2.setMaximumDrawHeight(300);
-        cp2.setMaximumDrawWidth(300);
-        cp2.getParent().invalidate();
+        CategoryPlot plot = (CategoryPlot) bar.getPlot();
+        BarRenderer barRenderer = (BarRenderer) plot.getRenderer();
+
+        barRenderer.setSeriesPaint(0, Color.BLUE);
+
+        //HOW PIE IS SITTING IN JPANEL
+        barJPanel.setLayout(new java.awt.BorderLayout());
+        barJPanel.add(barNutrientsPanel, BorderLayout.CENTER);
+        barJPanel.validate();
+
     }
 
     /**
      * REMOVES ALL ELEMENTS FROM PANEL AND REFRESHES IT
      */
-    private void refreshChart() {
-        testPanel.removeAll();
-        testPanel.revalidate();
+    private void refreshChart(JPanel panel) {
+        panel.removeAll();
+        panel.revalidate();
 
+    }
+    
+    private void setInitialPanelsVisibility(){
+        panLabel.setVisible(false);
+        pieJPanel.setVisible(false);
+        barJPanel.setVisible(false);
+        jVitaminsTable.setVisible(false);
     }
 
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        //Click Event in C#
-        //Create Message Box 
+  
+
 
         try {
 
             //GET VALUE FROM FROM FIELD SEARCH
-            String srchWord = txtSearch.getText();
+            String srchWord = txtSearch.getText().trim();
+            
+            
+            if(srchWord.trim().equals("")){
+                JOptionPane.showMessageDialog(this, "Please fill in the search field");
+            }
 
             //SEARCH
             Nutrients nutrients = app.queryData(srchWord);
 
-            if (nutrients != null) {
+            if (nutrients != null && nutrients.getMainNutrientsGramms().getEnergy() !=null) {
 
                 //PRINT LABEL 
                 this.getLabel(nutrients);
 
                 //SHOW CHARTS 
-                
                 //KCAL PROPORTION
                 getCaloriesProportion(nutrients.getCalories());
-                
-                
-                //BAR
+
+                //BAR NUTRIENTS GRAMS
                 getBar(nutrients.getMainNutrientsGramms());
 
                 //VITAMINS TABLE
                 getVitamins(nutrients);
 
+            }else{
+                 JOptionPane.showMessageDialog(this, "We had a problem analysing this. Please check the ingredient spelling or if you have entered a quantities for the ingredients.");
             }
 
-//            //ADD DATA TO LISTBOX
-//            List<String> vitamins = new ArrayList();
-//            nutrients.getVitaminsCollection().entrySet().stream().forEach(entry -> {
-//                //System.out.println(entry.getValue().getQuantity() + " " + entry.getValue().getLabel());
-//            });
-//
-//            //Listbox and combo use DefaultListModel
-//            DefaultListModel listModel = new DefaultListModel();
-//
-//            Collections.sort(vitamins);
-//            for (String s : vitamins) {
-//                listModel.addElement(s);
-//            }
-            //lstVitamins.setModel(listModel);
-            ////////////////////////////////TTTTTTTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBLLLLLLLLLLEEEEEE
         } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            System.out.println(e.getMessage());
         }
 
 
@@ -731,6 +744,7 @@ public class AppForm extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel barJPanel;
     private javax.swing.JButton btnSearch;
     private javax.swing.JTable grdNutrients;
     private javax.swing.JLabel jLabel1;
@@ -763,7 +777,7 @@ public class AppForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jVitaminsTable;
     private javax.swing.JLabel lblCalories;
     private javax.swing.JLabel lblCarbG;
     private javax.swing.JLabel lblCarbsD;
@@ -781,9 +795,8 @@ public class AppForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblSaturatedMg;
     private javax.swing.JLabel lblSugarD;
     private javax.swing.JLabel lblSugarG;
-    private javax.swing.JPanel panBar;
     private javax.swing.JPanel panLabel;
-    private javax.swing.JPanel testPanel;
+    private javax.swing.JPanel pieJPanel;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
