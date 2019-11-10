@@ -1,8 +1,7 @@
 package Models;
 
-import java.text.NumberFormat;
-
 public class VitaminDetails {
+
     private String label;
     private double quantity;
     private String unit;
@@ -26,9 +25,9 @@ public class VitaminDetails {
     }
 
     public void setQuantity(double quantity) {
-        NumberFormat num = NumberFormat.getNumberInstance();
-        num.setMaximumFractionDigits(2);
-        this.quantity = Double.parseDouble(num.format(quantity));
+        //NumberFormat num = NumberFormat.getNumberInstance();
+        //num.setMaximumFractionDigits(2);
+        this.quantity = quantity;//Double.parseDouble(num.format(quantity));
     }
 
     public String getUnit() {

@@ -5,7 +5,8 @@
  */
 package eatingsmart_nb;
 
-import Models.Nutrients;
+import Model2.NutrientsCollection;
+
 
 /**
  *
@@ -13,10 +14,10 @@ import Models.Nutrients;
  */
 public interface IRepo {
 
-    public Nutrients getData(String srch);
+    public NutrientsCollection getData(String srch);
 
     public boolean deleteData(String srch);
 
-    public void insertData(String search, Nutrients nutrients);
+    public void insertData(String search, NutrientsCollection nutrients);
 
 }

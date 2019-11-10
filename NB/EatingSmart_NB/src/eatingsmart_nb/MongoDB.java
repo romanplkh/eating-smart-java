@@ -1,6 +1,6 @@
 package eatingsmart_nb;
 
-import Models.Nutrients;
+import Model2.NutrientsCollection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -44,15 +44,15 @@ public class MongoDB implements IRepo {
     }
 
     @Override
-    public Nutrients getData(String src) {
+    public NutrientsCollection getData(String src) {
 
         Document doc = queryDocument(src);
-        Nutrients n = new Nutrients();
+        NutrientsCollection n = new NutrientsCollection();
 
         if (doc.size() == 0) {
             return null;
         } else {
-             System.out.println("************DATA FROM DATABASE**********");
+            System.out.println("************DATA FROM DATABASE**********");
             n = Helpers.MapDataToObject(null, doc);
         }
 
@@ -68,15 +68,15 @@ public class MongoDB implements IRepo {
     }
 
     @Override
-    public void insertData(String search, Nutrients nutrients) {
+    public void insertData(String search, NutrientsCollection nutrients) {
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
-            String totalG = objectMapper.writeValueAsString(nutrients.getMainNutrientsGramms());
-            String totalD = objectMapper.writeValueAsString(nutrients.getMainNutrientsDaily());
-            String totalK = objectMapper.writeValueAsString(nutrients.getCalories());
+            String totalG = objectMapper.writeValueAsString(nutrients.getTotalNutrients());
+            String totalD = objectMapper.writeValueAsString(nutrients.getTotalDaily());
+            String totalK = objectMapper.writeValueAsString(nutrients.getTotalKcal());
             String vitamins = objectMapper.writeValueAsString(nutrients.getVitaminsCollection());
 
             Document nutrientsData = new Document("searchKeys", search)

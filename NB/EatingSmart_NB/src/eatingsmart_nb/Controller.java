@@ -1,6 +1,6 @@
 package eatingsmart_nb;
 
-import Models.Nutrients;
+import Model2.NutrientsCollection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +20,10 @@ public class Controller {
 
     }
 
-    public Nutrients queryData(String search) {
+    public NutrientsCollection queryData(String search) {
 
-        Nutrients nutr = null;
+        //Nutrients nutr = null;
+        NutrientsCollection nutr = null;
         //FROM DB
         try {
             
@@ -35,7 +36,7 @@ public class Controller {
                 //No from db? Lets try from API
                 nutr = this.api.getNutrients(search.toLowerCase());
 
-                if (nutr.getMainNutrientsGramms().getEnergy() != null) {
+                if (nutr.getTotalNutrients().getEnergy()!= null) {
                     //DELETE OLD DATA FROM DB
                     repo.deleteData(search.toLowerCase());
 

@@ -1,5 +1,9 @@
 package eatingsmart_nb;
 
+import Model2.NutrientsCollection;
+import Model2.TotalDaily;
+import Model2.TotalNutrients;
+import Model2.TotalNutrientsKCal;
 import Models.Calories;
 import Models.MainNutrients;
 import Models.Nutrients;
@@ -9,6 +13,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileInputStream;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -43,13 +48,14 @@ public class Helpers {
 
     }
 
-    public static Nutrients MapDataToObject(JsonNode dataApi, Document dataDb) {
+    public static NutrientsCollection MapDataToObject(JsonNode dataApi, Document dataDb) {
         String main = "";
         String kcal = "";
         String daily = "";
         String vitamins = "";
 
         Nutrients nutrients = new Nutrients();
+        NutrientsCollection nutrColl = new NutrientsCollection();
         try {
 
             ObjectMapper om = new ObjectMapper();
@@ -74,6 +80,17 @@ public class Helpers {
 
             MainNutrients mainNutrientsG = om.readValue(main, MainNutrients.class);
             MainNutrients mainNutrientsD = om.readValue(daily, MainNutrients.class);
+
+            TotalNutrients total = om.readValue(main, TotalNutrients.class);
+            TotalDaily totalDaily = om.readValue(daily, TotalDaily.class);
+            TotalNutrientsKCal totalKcals = om.readValue(kcal, TotalNutrientsKCal.class);
+            
+            
+            nutrColl.setTotalDaily(totalDaily);
+            nutrColl.setTotalKcal(totalKcals);
+            nutrColl.setTotalNutrients(total);
+            nutrColl.setVitaminsCollection(getVitamins(om.readValue(vitamins, LinkedHashMap.class)));
+
             Calories kcals = om.readValue(kcal, Calories.class);
             nutrients.setCalories(kcals);
             nutrients.setMainNutrientsDaily(mainNutrientsD);
@@ -83,11 +100,9 @@ public class Helpers {
             System.out.println(e.getMessage());
         }
 
-        return nutrients;
+        return nutrColl;
     }
 
-    
-    
     private static Map<String, VitaminDetails> getVitamins(Map<String, LinkedHashMap<String, Object>> vitaminsDaily) {
 
         //MAP THAT HOLD ALL Nutriens as Objects NutrientDetails
@@ -104,11 +119,15 @@ public class Helpers {
         filteredWords.add("SUGAR");
         filteredWords.add("PROCNT");
 
+        NumberFormat number = NumberFormat.getInstance();
+
+        number.setMaximumFractionDigits(2);
+
         vitaminsDaily.forEach((key, val) -> {
 
             if (filteredWords.indexOf(key) == -1) {
                 String label = val.get("label").toString();
-                double quantity = Double.parseDouble(val.get("quantity").toString());
+                double quantity = val.get("quantity") != null ? Double.parseDouble(val.get("quantity").toString()) : 0;
                 String unit = val.get("unit").toString();
 
                 //Build Object VitaminDetails

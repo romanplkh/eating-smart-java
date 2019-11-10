@@ -5,6 +5,9 @@
  */
 package UI;
 
+import Model2.NutrientsCollection;
+import Model2.TotalDaily;
+import Model2.TotalNutrients;
 import Models.Calories;
 import Models.MainNutrients;
 import Models.Nutrients;
@@ -498,38 +501,56 @@ public class AppForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //GET NUTRITIONS LABEL
-    private void getLabel(Nutrients n) {
+    private void getLabel(NutrientsCollection n) {
         panLabel.setVisible(true);
 
         NumberFormat num = NumberFormat.getNumberInstance();
         num.setMaximumFractionDigits(2);
 
-        MainNutrients mnd = n.getMainNutrientsDaily();
-        MainNutrients mng = n.getMainNutrientsGramms();
-        Calories cal = n.getCalories();
+        TotalNutrients t = n.getTotalNutrients();
+        TotalDaily d = n.getTotalDaily();
 
+        lblFatMg.setText(num.format(t.getFAT().getQuantity())+ " g");
+        lblCalories.setText(num.format(t.getEnergy().getQuantity())+ " kcal");
+        lblCarbG.setText(num.format(t.getCarbs().getQuantity())+ " g");
+        lblFiberG.setText(num.format(t.getFiber().getQuantity())+ " g");
+        lblMonoG.setText(num.format(t.getMonostaturatedFat().getQuantity())+ " g");
+        lblPolyG.setText(num.format(t.getFatPolySaturated().getQuantity())+ " g");
+        lblProteinG.setText(num.format(t.getProtein().getQuantity())+ " g");
+        lblSaturatedMg.setText(num.format(t.getSaturatedFat().getQuantity())+ " g");
+        lblSugarG.setText(num.format(t.getSUGAR().getQuantity()));
+        
+        
+        lblFat.setText(num.format(d.getFAT().getQuantity())+ " %");
+        lblCarbsD.setText(num.format(d.getCarbs().getQuantity()) + " %");
+        lblFiberD.setText(num.format(d.getFiber().getQuantity()) + " %");
+        lblProteinD.setText(num.format(d.getProtein().getQuantity()) + " %");
+        lblSatD.setText(num.format(d.getSaturatedFat().getQuantity()) + " %");
+
+//        MainNutrients mnd = n.getMainNutrientsDaily();
+//        MainNutrients mng = n.getMainNutrientsGramms();
+//        Calories cal = n.getCalories();
         // System.out.println(mnd.getCarbs().get(AMOUNT));
-        lblFatMg.setText(mng.getFatGeneral() != null ? num.format(mng.getFatGeneral().get(QUANTITY)) + " g" : "");
-        lblCalories.setText(cal.getEnergyCal() != null ? num.format(cal.getEnergyCal().get(QUANTITY)) + " kcal" : "");
-        lblCarbG.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " g" : "");
-        lblFiberG.setText(mng.getFiber() != null ? num.format(mng.getFiber().get(QUANTITY)) + " g" : "");
-        lblMonoG.setText(mng.getFatMonosatured() != null ? num.format(mng.getFatMonosatured().get(QUANTITY)) + " g" : "");
-        lblPolyG.setText(mng.getFatPolysatured() != null ? num.format(mng.getFatPolysatured().get(QUANTITY)) + " g" : "");
-        lblProteinG.setText(mng.getProtein() != null ? num.format(mng.getProtein().get(QUANTITY)) + " g" : "");
-        lblSaturatedMg.setText(mng.getFatSatured() != null ? num.format(mng.getFatSatured().get(QUANTITY)) + " g" : "");
-        lblSugarG.setText(mng.getSugar() != null ? num.format(mng.getSugar().get(QUANTITY)) + " g" : "");
-        lblCarbG.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " g" : "");
-
-        lblFat.setText(mnd.getFatGeneral() != null ? num.format(mnd.getFatGeneral().get(QUANTITY)) + " %" : "");
-        lblCarbsD.setText(mnd.getCarbs() != null ? num.format(mnd.getCarbs().get(QUANTITY)) + " %" : "");
-        lblFiberD.setText(mnd.getFiber() != null ? num.format(mnd.getFiber().get(QUANTITY)) + " %" : "");
-        lblMonoD.setText(mnd.getFatMonosatured() != null ? num.format(mnd.getFatMonosatured().get(QUANTITY)) + " %" : "");
-        lblPolyD.setText(mnd.getFatPolysatured() != null ? num.format(mnd.getFatPolysatured().get(QUANTITY)) + " %" : "");
-        lblProteinD.setText(mnd.getProtein() != null ? num.format(mnd.getProtein().get(QUANTITY)) + " %" : "");
-        lblSatD.setText(mnd.getFatSatured() != null ? num.format(mnd.getFatSatured().get(QUANTITY)) + " %" : "");
-        lblSugarD.setText(mnd.getSugar() != null ? num.format(mnd.getSugar().get(QUANTITY)) + " %" : "");
-        lblCarbsD.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " %" : "");
-
+//        lblFatMg.setText(mng.getFatGeneral() != null ? num.format(mng.getFatGeneral().get(QUANTITY)) + " g" : "");
+//        lblCalories.setText(cal.getEnergyCal() != null ? num.format(cal.getEnergyCal().get(QUANTITY)) + " kcal" : "");
+//        lblCarbG.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " g" : "");
+//        lblFiberG.setText(mng.getFiber() != null ? num.format(mng.getFiber().get(QUANTITY)) + " g" : "");
+//        lblMonoG.setText(mng.getFatMonosatured() != null ? num.format(mng.getFatMonosatured().get(QUANTITY)) + " g" : "");
+//        lblPolyG.setText(mng.getFatPolysatured() != null ? num.format(mng.getFatPolysatured().get(QUANTITY)) + " g" : "");
+//        lblProteinG.setText(mng.getProtein() != null ? num.format(mng.getProtein().get(QUANTITY)) + " g" : "");
+//        lblSaturatedMg.setText(mng.getFatSatured() != null ? num.format(mng.getFatSatured().get(QUANTITY)) + " g" : "");
+//        lblSugarG.setText(mng.getSugar() != null ? num.format(mng.getSugar().get(QUANTITY)) + " g" : "");
+//        lblCarbG.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " g" : "");
+//
+//        lblFat.setText(mnd.getFatGeneral() != null ? num.format(mnd.getFatGeneral().get(QUANTITY)) + " %" : "");
+//        lblCarbsD.setText(mnd.getCarbs() != null ? num.format(mnd.getCarbs().get(QUANTITY)) + " %" : "");
+//        lblFiberD.setText(mnd.getFiber() != null ? num.format(mnd.getFiber().get(QUANTITY)) + " %" : "");
+//        lblMonoD.setText(mnd.getFatMonosatured() != null ? num.format(mnd.getFatMonosatured().get(QUANTITY)) + " %" : "");
+//        lblPolyD.setText(mnd.getFatPolysatured() != null ? num.format(mnd.getFatPolysatured().get(QUANTITY)) + " %" : "");
+//        lblProteinD.setText(mnd.getProtein() != null ? num.format(mnd.getProtein().get(QUANTITY)) + " %" : "");
+//        lblSatD.setText(mnd.getFatSatured() != null ? num.format(mnd.getFatSatured().get(QUANTITY)) + " %" : "");
+//        lblSugarD.setText(mnd.getSugar() != null ? num.format(mnd.getSugar().get(QUANTITY)) + " %" : "");
+//        lblCarbsD.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " %" : "");
     }
 
     //PIE CHART CALORIES PROPORTION
@@ -609,11 +630,11 @@ public class AppForm extends javax.swing.JFrame {
     private void getBar(MainNutrients nutrients) {
         barJPanel.setVisible(true);
         refreshChart(barJPanel);
-        double carbs = Double.valueOf(nutrients.getCarbs().get(QUANTITY).toString());
-        double fat = Double.valueOf(nutrients.getFatGeneral().get(QUANTITY).toString());
-        double fiber = Double.valueOf(nutrients.getFiber().get(QUANTITY).toString());
-        double protein = Double.valueOf(nutrients.getProtein().get(QUANTITY).toString());
-        double sugar = Double.valueOf(nutrients.getSugar().get(QUANTITY).toString());
+        double carbs = Double.parseDouble(nutrients.getCarbs().get(QUANTITY).toString());
+        double fat = Double.parseDouble(nutrients.getFatGeneral().get(QUANTITY).toString());
+        double fiber = Double.parseDouble(nutrients.getFiber().get(QUANTITY).toString());
+        double protein = Double.parseDouble(nutrients.getProtein().get(QUANTITY).toString());
+        double sugar = Double.parseDouble(nutrients.getSugar().get(QUANTITY).toString());
 
         //DATASET BAR
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -649,8 +670,8 @@ public class AppForm extends javax.swing.JFrame {
         panel.revalidate();
 
     }
-    
-    private void setInitialPanelsVisibility(){
+
+    private void setInitialPanelsVisibility() {
         panLabel.setVisible(false);
         pieJPanel.setVisible(false);
         barJPanel.setVisible(false);
@@ -659,43 +680,43 @@ public class AppForm extends javax.swing.JFrame {
 
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-  
-
 
         try {
 
             //GET VALUE FROM FROM FIELD SEARCH
             String srchWord = txtSearch.getText().trim();
-            
-            
-            if(srchWord.trim().equals("")){
+
+            if (srchWord.trim().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please fill in the search field");
             }
 
             //SEARCH
-            Nutrients nutrients = app.queryData(srchWord);
+            NutrientsCollection nutrients = app.queryData(srchWord);
 
-            if (nutrients != null && nutrients.getMainNutrientsGramms().getEnergy() !=null) {
+            if (app.getErrors().size() != 0) {
+                app.getErrors().stream().forEach(err -> JOptionPane.showMessageDialog(this, err.getDescription()));
+
+                return;
+            }
+
+            if (nutrients != null && nutrients.getTotalKcal().getEnergy() != null) {
 
                 //PRINT LABEL 
                 this.getLabel(nutrients);
 
                 //SHOW CHARTS 
                 //KCAL PROPORTION
-                getCaloriesProportion(nutrients.getCalories());
-
+                // getCaloriesProportion(nutrients.getCalories());
                 //BAR NUTRIENTS GRAMS
-                getBar(nutrients.getMainNutrientsGramms());
-
+                // getBar(nutrients.getMainNutrientsGramms());
                 //VITAMINS TABLE
-                getVitamins(nutrients);
-
-            }else{
-                 JOptionPane.showMessageDialog(this, "We had a problem analysing this. Please check the ingredient spelling or if you have entered a quantities for the ingredients.");
+                // getVitamins(nutrients);
+            } else {
+                JOptionPane.showMessageDialog(this, "We had a problem analysing this. Please check the ingredient spelling or if you have entered a quantities for the ingredients.");
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }
 
 

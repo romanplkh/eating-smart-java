@@ -1,6 +1,6 @@
 package eatingsmart_nb;
 
-import Models.Nutrients;
+import Model2.NutrientsCollection;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -74,7 +74,7 @@ public class API {
         }
     }
 
-    public Nutrients getNutrients(String srch) {
+    public NutrientsCollection getNutrients(String srch) {
         JsonNode data = this.getData(srch);
         return Helpers.MapDataToObject(data, null);
 
