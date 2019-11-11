@@ -1,7 +1,9 @@
-package Model2;
-
-
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -12,19 +14,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ * @author Roman
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "ENERC_KCAL",
     "FAT",
     "FASAT",
-    "FAMS",
-    "FAPU",
     "CHOCDF",
     "FIBTG",
-    "SUGAR",
     "PROCNT"
 })
-public class TotalNutrients {
+public class TotalDaily {
 
     @JsonProperty("ENERC_KCAL")
     private ENERCKCAL energy;
@@ -32,16 +35,10 @@ public class TotalNutrients {
     private FAT fat;
     @JsonProperty("FASAT")
     private FASAT fatSaturated;
-    @JsonProperty("FAMS")
-    private FAMS fatMonoSaturated;
-    @JsonProperty("FAPU")
-    private FAPU fatPolySaturated;
     @JsonProperty("CHOCDF")
     private CHOCDF carboHydrates;
     @JsonProperty("FIBTG")
     private FIBTG fiber;
-    @JsonProperty("SUGAR")
-    private SUGAR sugar;
     @JsonProperty("PROCNT")
     private PROCNT protein;
     @JsonIgnore
@@ -73,28 +70,8 @@ public class TotalNutrients {
     }
 
     @JsonProperty("FASAT")
-    public void sewStauratedFat(FASAT fASAT) {
+    public void setSaturatedFat(FASAT fASAT) {
         this.fatSaturated = fASAT;
-    }
-
-    @JsonProperty("FAMS")
-    public FAMS getMonostaturatedFat() {
-        return fatMonoSaturated;
-    }
-
-    @JsonProperty("FAMS")
-    public void setMonostaturatedFat(FAMS fAMS) {
-        this.fatMonoSaturated = fAMS;
-    }
-
-    @JsonProperty("FAPU")
-    public FAPU getFatPolySaturated() {
-        return fatPolySaturated;
-    }
-
-    @JsonProperty("FAPU")
-    public void setFatPolySaturated(FAPU fAPU) {
-        this.fatPolySaturated = fAPU;
     }
 
     @JsonProperty("CHOCDF")
@@ -117,16 +94,6 @@ public class TotalNutrients {
         this.fiber = fIBTG;
     }
 
-    @JsonProperty("SUGAR")
-    public SUGAR getSUGAR() {
-        return sugar;
-    }
-
-    @JsonProperty("SUGAR")
-    public void setSUGAR(SUGAR sUGAR) {
-        this.sugar = sUGAR;
-    }
-
     @JsonProperty("PROCNT")
     public PROCNT getProtein() {
         return protein;
@@ -146,5 +113,4 @@ public class TotalNutrients {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
 }

@@ -1,6 +1,4 @@
-package Model2;
-
-
+package Model;
 
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -18,7 +16,7 @@ import java.util.Map;
     "quantity",
     "unit"
 })
-public class ENERCKCAL {
+public class SUGAR {
 
     @JsonProperty("label")
     private String label;

@@ -1,7 +1,14 @@
-package Model2;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Model;
 
-
-
+/**
+ *
+ * @author Roman
+ */
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,12 +24,12 @@ import java.util.Map;
     "quantity",
     "unit"
 })
-public class FASAT {
+public class FATKCAL {
 
     @JsonProperty("label")
     private String label;
     @JsonProperty("quantity")
-    private Double quantity;
+    private Integer quantity;
     @JsonProperty("unit")
     private String unit;
     @JsonIgnore
@@ -39,12 +46,12 @@ public class FASAT {
     }
 
     @JsonProperty("quantity")
-    public Double getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
     @JsonProperty("quantity")
-    public void setQuantity(Double quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model2;
+package Model;
 
-import Models.VitaminDetails;
 import java.util.Map;
 
 /**

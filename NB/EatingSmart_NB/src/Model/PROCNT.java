@@ -1,4 +1,4 @@
-package Model2;
+package Model;
 
 
 
@@ -17,7 +17,7 @@ import java.util.Map;
     "quantity",
     "unit"
 })
-public class FIBTG {
+public class PROCNT {
 
     @JsonProperty("label")
     private String label;

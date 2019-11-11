@@ -1,5 +1,4 @@
-package Model2;
-
+package Model;
 
 
 
@@ -14,49 +13,23 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "label",
-    "quantity",
-    "unit"
+    "totalNutrients"
 })
-public class CHOCDF {
+public class Example {
 
-    @JsonProperty("label")
-    private String label;
-    @JsonProperty("quantity")
-    private Double quantity;
-    @JsonProperty("unit")
-    private String unit;
+    @JsonProperty("totalNutrients")
+    private TotalNutrients totalNutrients;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("label")
-    public String getLabel() {
-        return label;
+    @JsonProperty("totalNutrients")
+    public TotalNutrients getTotalNutrients() {
+        return totalNutrients;
     }
 
-    @JsonProperty("label")
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    @JsonProperty("quantity")
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    @JsonProperty("quantity")
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
-    @JsonProperty("unit")
-    public String getUnit() {
-        return unit;
-    }
-
-    @JsonProperty("unit")
-    public void setUnit(String unit) {
-        this.unit = unit;
+    @JsonProperty("totalNutrients")
+    public void setTotalNutrients(TotalNutrients totalNutrients) {
+        this.totalNutrients = totalNutrients;
     }
 
     @JsonAnyGetter

@@ -1,6 +1,6 @@
 package eatingsmart_nb;
 
-import Model2.NutrientsCollection;
+import Model.NutrientsCollection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +22,11 @@ public class Controller {
 
     public NutrientsCollection queryData(String search) {
 
-        //Nutrients nutr = null;
         NutrientsCollection nutr = null;
         //FROM DB
         try {
-            
-       
-           nutr = repo.getData(search.toLowerCase());
+
+            nutr = repo.getData(Helpers.FormatStringSearch(search.toLowerCase()));
 
             if (nutr == null) {
 
@@ -36,23 +34,25 @@ public class Controller {
                 //No from db? Lets try from API
                 nutr = this.api.getNutrients(search.toLowerCase());
 
-                if (nutr.getTotalNutrients().getEnergy()!= null) {
+                if (nutr.getTotalNutrients().getEnergy() == null) {
+                    errors.clear();
+                    errors.add(new ErrorProvider("We had a problem analysing this. "
+                            + "Please check the ingredient spelling or if you have entered a quantities for the ingredients."));
+                } else {
                     //DELETE OLD DATA FROM DB
-                    repo.deleteData(search.toLowerCase());
+                    repo.deleteData(Helpers.FormatStringSearch(search.toLowerCase()));
 
                     //INSERT FRESH DATA
-                    repo.insertData(search.toLowerCase(), nutr);
+                    repo.insertData(Helpers.FormatStringSearch(search.toLowerCase()), nutr);
                 }
-
-              
 
             }
 
         } catch (Exception e) {
-            errors.add(new ErrorProvider(e.getMessage()));
+            System.out.println(e.getMessage());
         }
-        
-          return nutr;
+
+        return nutr;
 
     }
 

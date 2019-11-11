@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Model2;
+package Model;
 
-/**
- *
- * @author Roman
- */
+
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,12 +17,12 @@ import java.util.Map;
     "quantity",
     "unit"
 })
-public class PROCNTKCAL {
+public class FASAT {
 
     @JsonProperty("label")
     private String label;
     @JsonProperty("quantity")
-    private Integer quantity;
+    private Double quantity;
     @JsonProperty("unit")
     private String unit;
     @JsonIgnore
@@ -46,12 +39,12 @@ public class PROCNTKCAL {
     }
 
     @JsonProperty("quantity")
-    public Integer getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
     @JsonProperty("quantity")
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 

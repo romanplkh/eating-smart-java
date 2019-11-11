@@ -1,13 +1,10 @@
 package eatingsmart_nb;
 
-import Model2.NutrientsCollection;
-import Model2.TotalDaily;
-import Model2.TotalNutrients;
-import Model2.TotalNutrientsKCal;
-import Models.Calories;
-import Models.MainNutrients;
-import Models.Nutrients;
-import Models.VitaminDetails;
+import Model.NutrientsCollection;
+import Model.TotalDaily;
+import Model.TotalNutrients;
+import Model.TotalNutrientsKCal;
+import Model.VitaminDetails;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -15,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileInputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -54,7 +52,7 @@ public class Helpers {
         String daily = "";
         String vitamins = "";
 
-        Nutrients nutrients = new Nutrients();
+   
         NutrientsCollection nutrColl = new NutrientsCollection();
         try {
 
@@ -66,7 +64,7 @@ public class Helpers {
                 main = dataApi.get("totalNutrients").toString();
                 daily = dataApi.get("totalDaily").toString();
                 kcal = dataApi.get("totalNutrientsKCal").toString();
-                nutrients.setVitaminsCollection(getVitamins(om.readValue(daily, LinkedHashMap.class)));
+                nutrColl.setVitaminsCollection(getVitamins(om.readValue(daily, LinkedHashMap.class)));
             }
 
             //GET FROM DB
@@ -75,26 +73,20 @@ public class Helpers {
                 daily = dataDb.get("totalDaily").toString();
                 kcal = dataDb.get("totalNutrientsKCal").toString();
                 vitamins = dataDb.get("vitamins").toString();
-                nutrients.setVitaminsCollection(getVitamins(om.readValue(vitamins, LinkedHashMap.class)));
+                nutrColl.setVitaminsCollection(getVitamins(om.readValue(vitamins, LinkedHashMap.class)));
             }
 
-            MainNutrients mainNutrientsG = om.readValue(main, MainNutrients.class);
-            MainNutrients mainNutrientsD = om.readValue(daily, MainNutrients.class);
+       
 
             TotalNutrients total = om.readValue(main, TotalNutrients.class);
             TotalDaily totalDaily = om.readValue(daily, TotalDaily.class);
             TotalNutrientsKCal totalKcals = om.readValue(kcal, TotalNutrientsKCal.class);
-            
-            
+
             nutrColl.setTotalDaily(totalDaily);
             nutrColl.setTotalKcal(totalKcals);
             nutrColl.setTotalNutrients(total);
-            nutrColl.setVitaminsCollection(getVitamins(om.readValue(vitamins, LinkedHashMap.class)));
 
-            Calories kcals = om.readValue(kcal, Calories.class);
-            nutrients.setCalories(kcals);
-            nutrients.setMainNutrientsDaily(mainNutrientsD);
-            nutrients.setMainNutrientsGramms(mainNutrientsG);
+          
 
         } catch (JsonProcessingException e) {
             System.out.println(e.getMessage());
@@ -141,6 +133,18 @@ public class Helpers {
 
         return myCOllVitamins;
 
+    }
+    
+    /**
+     * Gets the string to format, removes empty spaces, sort ascending the letters
+     * @param s string value
+     * @return formatted string to store in db as a key for search
+     */
+    public static String FormatStringSearch(String s){ 
+        s = s.replace(" ", "");     
+        char toSort[] = s.toCharArray();    
+        Arrays.sort(toSort);   
+       return  new String(toSort);
     }
 
 }

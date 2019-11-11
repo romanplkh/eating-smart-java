@@ -1,6 +1,6 @@
 package eatingsmart_nb;
 
-import Model2.NutrientsCollection;
+import Model.NutrientsCollection;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

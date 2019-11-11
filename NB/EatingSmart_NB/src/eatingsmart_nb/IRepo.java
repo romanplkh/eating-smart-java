@@ -5,7 +5,7 @@
  */
 package eatingsmart_nb;
 
-import Model2.NutrientsCollection;
+import Model.NutrientsCollection;
 
 
 /**

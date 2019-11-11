@@ -1,4 +1,5 @@
-package Model2;
+package Model;
+
 
 
 
@@ -17,7 +18,7 @@ import java.util.Map;
     "quantity",
     "unit"
 })
-public class FAMS {
+public class ENERCKCAL {
 
     @JsonProperty("label")
     private String label;

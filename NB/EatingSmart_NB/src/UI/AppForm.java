@@ -5,12 +5,10 @@
  */
 package UI;
 
-import Model2.NutrientsCollection;
-import Model2.TotalDaily;
-import Model2.TotalNutrients;
-import Models.Calories;
-import Models.MainNutrients;
-import Models.Nutrients;
+import Model.NutrientsCollection;
+import Model.TotalDaily;
+import Model.TotalNutrients;
+import Model.TotalNutrientsKCal;
 import eatingsmart_nb.API;
 import eatingsmart_nb.Controller;
 import eatingsmart_nb.MongoDB;
@@ -53,8 +51,11 @@ public class AppForm extends javax.swing.JFrame {
      */
     public AppForm() {
         initComponents();
+
         app = new Controller(new MongoDB("EatingSmart", "Nutrients"), new API());
 
+        Dimension dim = getToolkit().getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         setInitialPanelsVisibility();
 
     }
@@ -126,6 +127,7 @@ public class AppForm extends javax.swing.JFrame {
         jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(3, 3));
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -171,7 +173,7 @@ public class AppForm extends javax.swing.JFrame {
         panLabel.setBackground(new java.awt.Color(255, 255, 255));
         panLabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         panLabel.setDoubleBuffered(false);
-        panLabel.setMaximumSize(new java.awt.Dimension(200, 200));
+        panLabel.setMaximumSize(new java.awt.Dimension(350, 500));
         panLabel.setName("panLabel"); // NOI18N
         panLabel.setPreferredSize(new java.awt.Dimension(350, 500));
         panLabel.setLayout(null);
@@ -214,10 +216,9 @@ public class AppForm extends javax.swing.JFrame {
 
         lblSatD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblSatD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSatD.setText("jLabel5");
         lblSatD.setAlignmentX(0.5F);
         panLabel.add(lblSatD);
-        lblSatD.setBounds(250, 180, 60, 15);
+        lblSatD.setBounds(250, 180, 60, 20);
 
         jLabel6.setText("Monosaturated");
         jLabel6.setAlignmentX(0.5F);
@@ -239,10 +240,9 @@ public class AppForm extends javax.swing.JFrame {
 
         lblMonoD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblMonoD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMonoD.setText("jLabel7");
         lblMonoD.setAlignmentX(0.5F);
         panLabel.add(lblMonoD);
-        lblMonoD.setBounds(250, 210, 60, 15);
+        lblMonoD.setBounds(250, 210, 60, 20);
 
         jLabel8.setText("Polysaturated");
         jLabel8.setAlignmentX(0.5F);
@@ -251,10 +251,9 @@ public class AppForm extends javax.swing.JFrame {
 
         lblPolyD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblPolyD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPolyD.setText("jLabel9");
         lblPolyD.setAlignmentX(0.5F);
         panLabel.add(lblPolyD);
-        lblPolyD.setBounds(250, 240, 60, 15);
+        lblPolyD.setBounds(250, 240, 60, 20);
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -283,9 +282,8 @@ public class AppForm extends javax.swing.JFrame {
 
         lblCarbsD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCarbsD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCarbsD.setText("jLabel10");
         panLabel.add(lblCarbsD);
-        lblCarbsD.setBounds(220, 270, 90, 15);
+        lblCarbsD.setBounds(220, 270, 90, 20);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel22.setText("Protein");
@@ -299,9 +297,8 @@ public class AppForm extends javax.swing.JFrame {
 
         lblProteinD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblProteinD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblProteinD.setText("jLabel10");
         panLabel.add(lblProteinD);
-        lblProteinD.setBounds(230, 300, 80, 15);
+        lblProteinD.setBounds(230, 300, 80, 20);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel24.setText("Fiber");
@@ -315,9 +312,8 @@ public class AppForm extends javax.swing.JFrame {
 
         lblFiberD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFiberD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFiberD.setText("jLabel10");
         panLabel.add(lblFiberD);
-        lblFiberD.setBounds(240, 330, 70, 15);
+        lblFiberD.setBounds(240, 330, 70, 20);
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel26.setText("Sugar");
@@ -331,9 +327,8 @@ public class AppForm extends javax.swing.JFrame {
 
         lblSugarD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblSugarD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSugarD.setText("jLabel10");
         panLabel.add(lblSugarD);
-        lblSugarD.setBounds(240, 360, 70, 15);
+        lblSugarD.setBounds(240, 360, 70, 20);
 
         lblFatMg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFatMg.setText("jLabel30");
@@ -342,49 +337,44 @@ public class AppForm extends javax.swing.JFrame {
 
         lblSaturatedMg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblSaturatedMg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSaturatedMg.setText("jLabel31");
         lblSaturatedMg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panLabel.add(lblSaturatedMg);
-        lblSaturatedMg.setBounds(150, 180, 70, 15);
+        lblSaturatedMg.setBounds(150, 180, 70, 20);
 
         lblMonoG.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblMonoG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblMonoG.setText("jLabel32");
         lblMonoG.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panLabel.add(lblMonoG);
-        lblMonoG.setBounds(150, 210, 60, 15);
+        lblMonoG.setBounds(150, 210, 60, 20);
 
         lblPolyG.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblPolyG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblPolyG.setText("jLabel33");
         lblPolyG.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panLabel.add(lblPolyG);
-        lblPolyG.setBounds(150, 240, 60, 15);
+        lblPolyG.setBounds(150, 240, 60, 20);
 
         lblCarbG.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCarbG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCarbG.setText("jLabel34");
         lblCarbG.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panLabel.add(lblCarbG);
-        lblCarbG.setBounds(150, 270, 60, 14);
+        lblCarbG.setBounds(150, 270, 60, 20);
 
         lblProteinG.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblProteinG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblProteinG.setText("jLabel35");
+        lblProteinG.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblProteinG.setPreferredSize(new java.awt.Dimension(70, 20));
         panLabel.add(lblProteinG);
-        lblProteinG.setBounds(130, 300, 70, 15);
+        lblProteinG.setBounds(150, 300, 70, 20);
 
         lblFiberG.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblFiberG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblFiberG.setText("jLabel36");
         panLabel.add(lblFiberG);
-        lblFiberG.setBounds(130, 330, 60, 15);
+        lblFiberG.setBounds(150, 330, 60, 20);
 
         lblSugarG.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblSugarG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSugarG.setText("jLabel37");
         panLabel.add(lblSugarG);
-        lblSugarG.setBounds(130, 360, 60, 15);
+        lblSugarG.setBounds(150, 360, 60, 20);
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -406,7 +396,7 @@ public class AppForm extends javax.swing.JFrame {
         pieJPanel.setLayout(pieJPanelLayout);
         pieJPanelLayout.setHorizontalGroup(
             pieJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
         pieJPanelLayout.setVerticalGroup(
             pieJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +410,7 @@ public class AppForm extends javax.swing.JFrame {
         barJPanel.setLayout(barJPanelLayout);
         barJPanelLayout.setHorizontalGroup(
             barJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
         barJPanelLayout.setVerticalGroup(
             barJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,6 +434,11 @@ public class AppForm extends javax.swing.JFrame {
         jMenu2.setText("Info");
 
         jMenuItem2.setText("About");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -454,44 +449,41 @@ public class AppForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
-                .addComponent(panLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(barJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pieJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 25, Short.MAX_VALUE)
-                .addComponent(jVitaminsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(barJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pieJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
+                        .addGap(18, 61, Short.MAX_VALUE)
+                        .addComponent(jVitaminsTable, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSearch)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pieJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pieJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(barJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(barJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(panLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jVitaminsTable))
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -502,69 +494,44 @@ public class AppForm extends javax.swing.JFrame {
 
     //GET NUTRITIONS LABEL
     private void getLabel(NutrientsCollection n) {
-        panLabel.setVisible(true);
 
         NumberFormat num = NumberFormat.getNumberInstance();
-        num.setMaximumFractionDigits(2);
+        num.setMaximumFractionDigits(1);
 
         TotalNutrients t = n.getTotalNutrients();
         TotalDaily d = n.getTotalDaily();
 
-        lblFatMg.setText(num.format(t.getFAT().getQuantity())+ " g");
-        lblCalories.setText(num.format(t.getEnergy().getQuantity())+ " kcal");
-        lblCarbG.setText(num.format(t.getCarbs().getQuantity())+ " g");
-        lblFiberG.setText(num.format(t.getFiber().getQuantity())+ " g");
-        lblMonoG.setText(num.format(t.getMonostaturatedFat().getQuantity())+ " g");
-        lblPolyG.setText(num.format(t.getFatPolySaturated().getQuantity())+ " g");
-        lblProteinG.setText(num.format(t.getProtein().getQuantity())+ " g");
-        lblSaturatedMg.setText(num.format(t.getSaturatedFat().getQuantity())+ " g");
-        lblSugarG.setText(num.format(t.getSUGAR().getQuantity()));
-        
-        
-        lblFat.setText(num.format(d.getFAT().getQuantity())+ " %");
-        lblCarbsD.setText(num.format(d.getCarbs().getQuantity()) + " %");
-        lblFiberD.setText(num.format(d.getFiber().getQuantity()) + " %");
-        lblProteinD.setText(num.format(d.getProtein().getQuantity()) + " %");
-        lblSatD.setText(num.format(d.getSaturatedFat().getQuantity()) + " %");
+        lblFatMg.setText(t.getFAT() != null ? num.format(t.getFAT().getQuantity()) + " g" : "");
+        lblCalories.setText(t.getEnergy() != null ? num.format(t.getEnergy().getQuantity()) + " kcal" : "");
+        lblCarbG.setText(t.getCarbs() != null ? num.format(t.getCarbs().getQuantity()) + " g" : "");
+        lblFiberG.setText(t.getFiber() != null ? num.format(t.getFiber().getQuantity()) + " g" : "");
+        lblMonoG.setText(t.getMonostaturatedFat() != null ? num.format(t.getMonostaturatedFat().getQuantity()) + " g" : "");
+        lblPolyG.setText(t.getFatPolySaturated() != null ? num.format(t.getFatPolySaturated().getQuantity()) + " g" : "");
+        lblProteinG.setText(t.getProtein() != null ? num.format(t.getProtein().getQuantity()) + " g" : "");
+        lblSaturatedMg.setText(t.getSaturatedFat() != null ? num.format(t.getSaturatedFat().getQuantity()) + " g" : "");
+        lblSugarG.setText(t.getSUGAR() != null ? num.format(t.getSUGAR().getQuantity()) : "");
 
-//        MainNutrients mnd = n.getMainNutrientsDaily();
-//        MainNutrients mng = n.getMainNutrientsGramms();
-//        Calories cal = n.getCalories();
-        // System.out.println(mnd.getCarbs().get(AMOUNT));
-//        lblFatMg.setText(mng.getFatGeneral() != null ? num.format(mng.getFatGeneral().get(QUANTITY)) + " g" : "");
-//        lblCalories.setText(cal.getEnergyCal() != null ? num.format(cal.getEnergyCal().get(QUANTITY)) + " kcal" : "");
-//        lblCarbG.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " g" : "");
-//        lblFiberG.setText(mng.getFiber() != null ? num.format(mng.getFiber().get(QUANTITY)) + " g" : "");
-//        lblMonoG.setText(mng.getFatMonosatured() != null ? num.format(mng.getFatMonosatured().get(QUANTITY)) + " g" : "");
-//        lblPolyG.setText(mng.getFatPolysatured() != null ? num.format(mng.getFatPolysatured().get(QUANTITY)) + " g" : "");
-//        lblProteinG.setText(mng.getProtein() != null ? num.format(mng.getProtein().get(QUANTITY)) + " g" : "");
-//        lblSaturatedMg.setText(mng.getFatSatured() != null ? num.format(mng.getFatSatured().get(QUANTITY)) + " g" : "");
-//        lblSugarG.setText(mng.getSugar() != null ? num.format(mng.getSugar().get(QUANTITY)) + " g" : "");
-//        lblCarbG.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " g" : "");
-//
-//        lblFat.setText(mnd.getFatGeneral() != null ? num.format(mnd.getFatGeneral().get(QUANTITY)) + " %" : "");
-//        lblCarbsD.setText(mnd.getCarbs() != null ? num.format(mnd.getCarbs().get(QUANTITY)) + " %" : "");
-//        lblFiberD.setText(mnd.getFiber() != null ? num.format(mnd.getFiber().get(QUANTITY)) + " %" : "");
-//        lblMonoD.setText(mnd.getFatMonosatured() != null ? num.format(mnd.getFatMonosatured().get(QUANTITY)) + " %" : "");
-//        lblPolyD.setText(mnd.getFatPolysatured() != null ? num.format(mnd.getFatPolysatured().get(QUANTITY)) + " %" : "");
-//        lblProteinD.setText(mnd.getProtein() != null ? num.format(mnd.getProtein().get(QUANTITY)) + " %" : "");
-//        lblSatD.setText(mnd.getFatSatured() != null ? num.format(mnd.getFatSatured().get(QUANTITY)) + " %" : "");
-//        lblSugarD.setText(mnd.getSugar() != null ? num.format(mnd.getSugar().get(QUANTITY)) + " %" : "");
-//        lblCarbsD.setText(mng.getCarbs() != null ? num.format(mng.getCarbs().get(QUANTITY)) + " %" : "");
+        lblFat.setText(d.getFAT() != null ? num.format(d.getFAT().getQuantity()) + " %" : "");
+        lblCarbsD.setText(d.getCarbs() != null ? num.format(d.getCarbs().getQuantity()) + " %" : "");
+        lblFiberD.setText(d.getFiber() != null ? num.format(d.getFiber().getQuantity()) + " %" : "");
+        lblProteinD.setText(d.getProtein() != null ? num.format(d.getProtein().getQuantity()) + " %" : "");
+        lblSatD.setText(d.getSaturatedFat() != null ? num.format(d.getSaturatedFat().getQuantity()) + " %" : "");
+
+        panLabel.setVisible(true);
+
     }
 
     //PIE CHART CALORIES PROPORTION
-    private void getCaloriesProportion(Calories cal) {
+    private void getCaloriesProportion(TotalNutrientsKCal cal) {
 
-        pieJPanel.setVisible(true);
+        refreshChart(pieJPanel);
 
         //REFERSH PANEL FROM PREVIOUS CHART   
-        refreshChart(pieJPanel);
         //DATASET PIE
-        double carbsData = Double.valueOf(cal.getCarbsCal().get(QUANTITY).toString());
-        double energyData = Double.valueOf(cal.getEnergyCal().get(QUANTITY).toString());
-        double fatData = Double.valueOf(cal.getFatCal().get(QUANTITY).toString());
-        double proteinData = Double.valueOf(cal.getPreteinCal().get(QUANTITY).toString());
+        double carbsData = cal.getCarbsKCAL().getQuantity();
+        double energyData = cal.getEnergy().getQuantity();
+        double fatData = cal.getFATKCAL().getQuantity();
+        double proteinData = cal.getProteinKcal().getQuantity();
 
         //SET DATASET
         DefaultPieDataset data = new DefaultKeyedValuesDataset();
@@ -602,11 +569,11 @@ public class AppForm extends javax.swing.JFrame {
         pieJPanel.setLayout(new java.awt.BorderLayout());
         pieJPanel.add(myChart, BorderLayout.CENTER);
         pieJPanel.validate();
+        pieJPanel.setVisible(true);
     }
 
-    private void getVitamins(Nutrients nutrients) {
-        //SHOW VITAMINS
-        jVitaminsTable.setVisible(true);
+    private void getVitamins(NutrientsCollection nutrients) {
+
         //Table 
         DefaultTableModel tableModel = (DefaultTableModel) grdNutrients.getModel();
 
@@ -625,16 +592,19 @@ public class AppForm extends javax.swing.JFrame {
 
         grdNutrients.setAutoCreateRowSorter(true);
 
+        //SHOW VITAMINS
+        jVitaminsTable.setVisible(true);
+
     }
 
-    private void getBar(MainNutrients nutrients) {
-        barJPanel.setVisible(true);
+    private void getNutrientsChart(TotalNutrients nutrients) {
         refreshChart(barJPanel);
-        double carbs = Double.parseDouble(nutrients.getCarbs().get(QUANTITY).toString());
-        double fat = Double.parseDouble(nutrients.getFatGeneral().get(QUANTITY).toString());
-        double fiber = Double.parseDouble(nutrients.getFiber().get(QUANTITY).toString());
-        double protein = Double.parseDouble(nutrients.getProtein().get(QUANTITY).toString());
-        double sugar = Double.parseDouble(nutrients.getSugar().get(QUANTITY).toString());
+
+        double carbs = nutrients.getCarbs() != null ? nutrients.getCarbs().getQuantity() : 0;
+        double fat = nutrients.getFAT() != null ? nutrients.getFAT().getQuantity() : 0;
+        double fiber = nutrients.getFiber() != null ? nutrients.getFiber().getQuantity() : 0;
+        double protein = nutrients.getProtein() != null ? nutrients.getProtein().getQuantity() : 0;
+        double sugar = nutrients.getSUGAR() != null ? nutrients.getSUGAR().getQuantity() : 0;
 
         //DATASET BAR
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -659,6 +629,8 @@ public class AppForm extends javax.swing.JFrame {
         barJPanel.setLayout(new java.awt.BorderLayout());
         barJPanel.add(barNutrientsPanel, BorderLayout.CENTER);
         barJPanel.validate();
+
+        barJPanel.setVisible(true);
 
     }
 
@@ -688,35 +660,35 @@ public class AppForm extends javax.swing.JFrame {
 
             if (srchWord.trim().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please fill in the search field");
+                return;
             }
 
             //SEARCH
             NutrientsCollection nutrients = app.queryData(srchWord);
 
-            if (app.getErrors().size() != 0) {
+            if (!app.getErrors().isEmpty()) {
                 app.getErrors().stream().forEach(err -> JOptionPane.showMessageDialog(this, err.getDescription()));
-
                 return;
+            
             }
-
-            if (nutrients != null && nutrients.getTotalKcal().getEnergy() != null) {
+            if (nutrients != null) {
 
                 //PRINT LABEL 
                 this.getLabel(nutrients);
 
                 //SHOW CHARTS 
                 //KCAL PROPORTION
-                // getCaloriesProportion(nutrients.getCalories());
+                getCaloriesProportion(nutrients.getTotalKcal());
                 //BAR NUTRIENTS GRAMS
-                // getBar(nutrients.getMainNutrientsGramms());
+                getNutrientsChart(nutrients.getTotalNutrients());
                 //VITAMINS TABLE
-                // getVitamins(nutrients);
+                getVitamins(nutrients);
             } else {
-                JOptionPane.showMessageDialog(this, "We had a problem analysing this. Please check the ingredient spelling or if you have entered a quantities for the ingredients.");
+              
             }
 
         } catch (Exception e) {
-            //System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
 
@@ -724,9 +696,16 @@ public class AppForm extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        setVisible(false); //you can't see me!
+        setVisible(false);
         dispose(); //Destroy the JFrame object
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        AboutForm f = new AboutForm();
+        f.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
