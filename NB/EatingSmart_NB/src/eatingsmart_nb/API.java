@@ -56,16 +56,17 @@ public class API {
     }
 
     private JsonNode getData(String search) {
+        JsonNode nutrientsCollection;
         try {
 
-            URL searchRequest = new URL(this.baseUrl.toString() + URLEncoder.encode(search, StandardCharsets.UTF_8));
+            URL searchRequest = new URL(this.baseUrl.toString() + URLEncoder.encode(search, StandardCharsets.UTF_8.toString()));
             HttpURLConnection conn = (HttpURLConnection) searchRequest.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
             BufferedReader response = new BufferedReader(new InputStreamReader((conn.getInputStream())));
             ObjectMapper objectMapper = new ObjectMapper();
-           objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            JsonNode nutrientsCollection = objectMapper.readTree(response);
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            nutrientsCollection = objectMapper.readTree(response);
             conn.disconnect();
             return nutrientsCollection;
         } catch (IOException e) {
@@ -76,33 +77,14 @@ public class API {
 
     public NutrientsCollection getNutrients(String srch) {
         JsonNode data = this.getData(srch);
-        return Helpers.MapDataToObject(data, null);
+
+        if (data.get("totalNutrients").isEmpty()) {
+            System.out.println("cannot fetch data from api");
+            return null;
+        }
+
+        return Helpers.MapDataToObject(data);
 
     }
 
 }
-
-//    public Map<String, Object> getMappedValue(Document doc) {
-//        try {
-//            Map<String, Object> jsonMap = this.objectMapper.readValue(doc.toJson(), new TypeReference<>() {
-//            });
-//            return jsonMap;
-//        } catch (JsonProcessingException e) {
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//
-//    }
-//
-//    public Map<String, Object> getMappedValue(String json) {
-//        try {
-//            Map<String, Object> jsonMap = this.objectMapper.readValue(json, new TypeReference<>() {
-//            });
-//            return jsonMap;
-//        } catch (JsonProcessingException e) {
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//
-//    }
-

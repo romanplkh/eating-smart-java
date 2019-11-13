@@ -5,7 +5,6 @@ import Model.TotalDaily;
 import Model.TotalNutrients;
 import Model.TotalNutrientsKCal;
 import Model.VitaminDetails;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,60 +45,88 @@ public class Helpers {
 
     }
 
-    public static NutrientsCollection MapDataToObject(JsonNode dataApi, Document dataDb) {
-        String main = "";
-        String kcal = "";
-        String daily = "";
-        String vitamins = "";
+    public static NutrientsCollection MapDataToObject(JsonNode dataApi) {
 
-   
         NutrientsCollection nutrColl = new NutrientsCollection();
+
         try {
 
-            ObjectMapper om = new ObjectMapper();
-            om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            String main = "";
+            String kcal = "";
+            String daily = "";
 
-            //GET FROM API
-            if (dataApi != null) {
-                main = dataApi.get("totalNutrients").toString();
-                daily = dataApi.get("totalDaily").toString();
-                kcal = dataApi.get("totalNutrientsKCal").toString();
-                nutrColl.setVitaminsCollection(getVitamins(om.readValue(daily, LinkedHashMap.class)));
-            }
+            ObjectMapper om = getMapper();
 
-            //GET FROM DB
-            if (dataDb != null) {
-                main = dataDb.get("totalNutrients").toString();
-                daily = dataDb.get("totalDaily").toString();
-                kcal = dataDb.get("totalNutrientsKCal").toString();
-                vitamins = dataDb.get("vitamins").toString();
-                nutrColl.setVitaminsCollection(getVitamins(om.readValue(vitamins, LinkedHashMap.class)));
-            }
+            main = dataApi.get("totalNutrients").toString();
+            daily = dataApi.get("totalDaily").toString();
+            kcal = dataApi.get("totalNutrientsKCal").toString();
+            nutrColl.setVitaminsCollection(mapVitamins(om.readValue(daily, LinkedHashMap.class)));
 
-       
-
+            //PARSE JSON
             TotalNutrients total = om.readValue(main, TotalNutrients.class);
             TotalDaily totalDaily = om.readValue(daily, TotalDaily.class);
             TotalNutrientsKCal totalKcals = om.readValue(kcal, TotalNutrientsKCal.class);
 
+            //POPULATE COLLECTION OF NUTRIENTS WITH DATA
             nutrColl.setTotalDaily(totalDaily);
             nutrColl.setTotalKcal(totalKcals);
             nutrColl.setTotalNutrients(total);
 
-          
-
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         return nutrColl;
     }
 
-    private static Map<String, VitaminDetails> getVitamins(Map<String, LinkedHashMap<String, Object>> vitaminsDaily) {
+    public static NutrientsCollection MapDataToObject(Document dataDb) {
+
+        NutrientsCollection nutrColl = new NutrientsCollection();
+
+        try {
+
+            String main = "";
+            String kcal = "";
+            String daily = "";
+            String vitamins = "";
+
+            ObjectMapper om = getMapper();
+            main = dataDb.get("totalNutrients").toString();
+            daily = dataDb.get("totalDaily").toString();
+            kcal = dataDb.get("totalNutrientsKCal").toString();
+            vitamins = dataDb.get("vitamins").toString();
+            nutrColl.setVitaminsCollection(mapVitamins(om.readValue(vitamins, LinkedHashMap.class)));
+
+            //PARSE JSON
+            TotalNutrients total = om.readValue(main, TotalNutrients.class);
+            TotalDaily totalDaily = om.readValue(daily, TotalDaily.class);
+            TotalNutrientsKCal totalKcals = om.readValue(kcal, TotalNutrientsKCal.class);
+
+            //POPULATE COLLECTION OF NUTRIENTS WITH DATA
+            nutrColl.setTotalDaily(totalDaily);
+            nutrColl.setTotalKcal(totalKcals);
+            nutrColl.setTotalNutrients(total);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return nutrColl;
+    }
+
+    private static ObjectMapper getMapper() {
+        ObjectMapper om = new ObjectMapper();
+        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return om;
+    }
+
+    private static Map<String, VitaminDetails> mapVitamins(Map<String, LinkedHashMap<String, Object>> vitaminsDaily) {
 
         //MAP THAT HOLD ALL Nutriens as Objects NutrientDetails
         Map<String, VitaminDetails> myCOllVitamins = new HashMap<>();
 
+        
+        //CREATE FILTER WORDS FOR VITAMINS
         ArrayList<String> filteredWords = new ArrayList<>();
         filteredWords.add("FAT");
         filteredWords.add("FASAT");
@@ -112,9 +139,10 @@ public class Helpers {
         filteredWords.add("PROCNT");
 
         NumberFormat number = NumberFormat.getInstance();
-
         number.setMaximumFractionDigits(2);
 
+        
+        //FILLTER VITAMINS AND STORE THEM IN VITAMINS COLLECTION
         vitaminsDaily.forEach((key, val) -> {
 
             if (filteredWords.indexOf(key) == -1) {
@@ -134,17 +162,19 @@ public class Helpers {
         return myCOllVitamins;
 
     }
-    
+
     /**
-     * Gets the string to format, removes empty spaces, sort ascending the letters
+     * Gets the string to format, removes empty spaces, sort the
+     * letters in ascending order
+     * Method is used to store search values in db, so expression "1 orange" and "orange 1" will be evaluated as equal
      * @param s string value
      * @return formatted string to store in db as a key for search
      */
-    public static String FormatStringSearch(String s){ 
-        s = s.replace(" ", "");     
-        char toSort[] = s.toCharArray();    
-        Arrays.sort(toSort);   
-       return  new String(toSort);
+    public static String FormatStringSearch(String s) {
+        s = s.replace(" ", "");
+        char toSort[] = s.toCharArray();
+        Arrays.sort(toSort);
+        return new String(toSort);
     }
 
 }

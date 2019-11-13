@@ -18,15 +18,14 @@ public class MongoDB implements IRepo {
     MongoCollection<Document> collection;
 
     public MongoDB(String database, String collection) {
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://roman:Lovelife89!@nutrients-lmd94.mongodb.net/admin?retryWrites=true&w=majority");
+        MongoClient mongoClient = MongoClients.create(getConnectionString());
         MongoDatabase db = mongoClient.getDatabase(database);
         this.collection = db.getCollection(collection);
     }
 
     private String getConnectionString() {
-        String conn = "";
         Properties myProperties = Helpers.getProperties();
-        return conn = myProperties.getProperty("mongodb.url");
+        return myProperties.getProperty("mongodb.url");
     }
 
     private Document queryDocument(String srch) {
@@ -37,7 +36,7 @@ public class MongoDB implements IRepo {
                 )).first();
 
         if (foundInDb == null) {
-            foundInDb = new Document();
+            return null;
         }
 
         return foundInDb;
@@ -47,14 +46,19 @@ public class MongoDB implements IRepo {
     public NutrientsCollection getData(String src) {
 
         Document doc = queryDocument(src);
+
+        if (doc == null) {
+            return null;
+        }
+
         NutrientsCollection n = new NutrientsCollection();
 
-        if (doc.size() == 0) {
-            return null;
-        } else {
-            System.out.println("************DATA FROM DATABASE**********");
-            n = Helpers.MapDataToObject(null, doc);
-        }
+//        if (doc.size() == 0) {
+//            return null;
+//        } else {
+        System.out.println("************DATA FROM DATABASE**********");
+        n = Helpers.MapDataToObject(doc);
+//        }
 
         return n;
 
@@ -93,53 +97,4 @@ public class MongoDB implements IRepo {
         }
 
     }
-
-//    public  Document GetDocument(String field, Object value){
-//       try {
-//           Document doc = this.collection.find(eq(field, value)).first();
-//           return  doc;
-//       }catch (MongoException ex){
-//           System.out.println(ex.getMessage());
-//           return  null;
-//       }
-//    }
-//
-//    public void InsertDocument(Document value) {
-//       try {
-//           this.collection.insertOne(value);
-//       }catch (MongoException ex){
-//           System.out.println(ex.getMessage());
-//       }
-//
-//    }
-//
-//    public StringBuilder GetAllDocuments(){
-//
-//       StringBuilder json = new StringBuilder();
-//
-//        MongoCursor<Document> cursor = this.collection.find().iterator();
-//        try {
-//            while (cursor.hasNext()) {
-//                json.append(cursor.next().toJson());
-//            }
-//        } finally {
-//            cursor.close();
-//        }
-//
-//        return json;
-//    }
-//
-//
-//    /**
-//     *
-//     * @param field
-//     * @param oldValue
-//     * @param newValue
-//     * @return long 1- update successful, 0 - not
-//     */
-//    public long UpdateDocument(String field, Object oldValue, Object newValue){
-//      UpdateResult result =  collection.updateOne(eq(field, oldValue), new Document("$set", new Document(field, newValue)));
-//
-//        return result.getModifiedCount();
-//    }
 }

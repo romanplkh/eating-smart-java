@@ -21,12 +21,15 @@ public class Controller {
     }
 
     public NutrientsCollection queryData(String search) {
-
+        this.errors.clear();
         NutrientsCollection nutr = null;
         //FROM DB
         try {
 
-            nutr = repo.getData(Helpers.FormatStringSearch(search.toLowerCase()));
+            String srchDB = Helpers.FormatStringSearch(search.toLowerCase());
+            
+            //SEARCH FIRST IN DATABASE
+            nutr = repo.getData(srchDB);
 
             if (nutr == null) {
 
@@ -34,16 +37,16 @@ public class Controller {
                 //No from db? Lets try from API
                 nutr = this.api.getNutrients(search.toLowerCase());
 
-                if (nutr.getTotalNutrients().getEnergy() == null) {
+                if (nutr == null) {
                     errors.clear();
                     errors.add(new ErrorProvider("We had a problem analysing this. "
                             + "Please check the ingredient spelling or if you have entered a quantities for the ingredients."));
                 } else {
                     //DELETE OLD DATA FROM DB
-                    repo.deleteData(Helpers.FormatStringSearch(search.toLowerCase()));
+                    repo.deleteData(srchDB);
 
                     //INSERT FRESH DATA
-                    repo.insertData(Helpers.FormatStringSearch(search.toLowerCase()), nutr);
+                    repo.insertData(srchDB, nutr);
                 }
 
             }
