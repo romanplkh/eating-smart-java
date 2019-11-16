@@ -1,10 +1,11 @@
 package eatingsmart_nb;
 
 import Model.NutrientsCollection;
-import Model.TotalNutrientsDaily;
 import Model.TotalNutrients;
+import Model.TotalNutrientsDaily;
 import Model.TotalNutrientsKCal;
 import Model.TotalVitamins;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,15 +46,20 @@ public class Helpers {
 
     }
 
+    /**
+     * Maps data against models
+     *
+     * @param dataApi data in JsonNode format
+     * @return collection of mapped models
+     */
     public static NutrientsCollection MapDataToObject(JsonNode dataApi) {
 
         NutrientsCollection nutrColl = new NutrientsCollection();
 
+        String main = "";
+        String kcal = "";
+        String daily = "";
         try {
-
-            String main = "";
-            String kcal = "";
-            String daily = "";
 
             ObjectMapper om = getMapper();
 
@@ -62,71 +68,94 @@ public class Helpers {
             kcal = dataApi.get("totalNutrientsKCal").toString();
             nutrColl.setVitaminsCollection(mapVitamins(om.readValue(daily, LinkedHashMap.class)));
 
-            //PARSE JSON
-            TotalNutrients total = om.readValue(main, TotalNutrients.class);
-            TotalNutrientsDaily totalDaily = om.readValue(daily, TotalNutrientsDaily.class);
-            TotalNutrientsKCal totalKcals = om.readValue(kcal, TotalNutrientsKCal.class);
-
-            //POPULATE COLLECTION OF NUTRIENTS WITH DATA
-            nutrColl.setTotalDaily(totalDaily);
-            nutrColl.setTotalKcal(totalKcals);
-            nutrColl.setTotalNutrients(total);
-
-        } catch (Exception e) {
+        } catch (JsonProcessingException e) {
             System.out.println(e.getMessage());
         }
 
-        return nutrColl;
+        return setCollection(nutrColl, main, daily, kcal);
     }
 
+    /**
+     * Maps data against models
+     *
+     * @param dataDb data from db in bson.Document format
+     * @return collection of mapped models
+     */
     public static NutrientsCollection MapDataToObject(Document dataDb) {
 
         NutrientsCollection nutrColl = new NutrientsCollection();
-
+        String main = "";
+        String kcal = "";
+        String daily = "";
+        String vitamins = "";
         try {
 
-            String main = "";
-            String kcal = "";
-            String daily = "";
-            String vitamins = "";
-
             ObjectMapper om = getMapper();
+            //Though methods looks similar to those returned with JsonNode format, they are different!!!!
             main = dataDb.get("totalNutrients").toString();
             daily = dataDb.get("totalDaily").toString();
             kcal = dataDb.get("totalNutrientsKCal").toString();
             vitamins = dataDb.get("vitamins").toString();
             nutrColl.setVitaminsCollection(mapVitamins(om.readValue(vitamins, LinkedHashMap.class)));
 
-            //PARSE JSON
+        } catch (JsonProcessingException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return setCollection(nutrColl, main, daily, kcal);
+    }
+
+    /**
+     * Sets collection of nutrients with data
+     * @param nutrColl collection of nutrients of type NutrientsCollection
+     * @param main Json data about main ingredients in string format
+     * @param daily Json data about daily value in string format
+     * @param kcal Json data about kcal value in string format
+     * @return collection of nutrients 
+     */
+    public static NutrientsCollection setCollection(NutrientsCollection nutrColl, String main, String daily, String kcal) {
+
+        try {
+            ObjectMapper om = getMapper();
+            //PARSE JSON AND MAP TO MODELS
             TotalNutrients total = om.readValue(main, TotalNutrients.class);
             TotalNutrientsDaily totalDaily = om.readValue(daily, TotalNutrientsDaily.class);
             TotalNutrientsKCal totalKcals = om.readValue(kcal, TotalNutrientsKCal.class);
 
-            //POPULATE COLLECTION OF NUTRIENTS WITH DATA
+            //SET COLLECTION OF NUTRIENTS WITH DATA
             nutrColl.setTotalDaily(totalDaily);
             nutrColl.setTotalKcal(totalKcals);
             nutrColl.setTotalNutrients(total);
 
-        } catch (Exception e) {
+        } catch (JsonProcessingException e) {
             System.out.println(e.getMessage());
         }
 
         return nutrColl;
     }
 
+    /**
+     * Initializes object mapper to read Json
+     * @return object mapper
+     */
     private static ObjectMapper getMapper() {
         ObjectMapper om = new ObjectMapper();
         om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return om;
     }
 
+    
+    /**
+     * Filters vitamins among all microelements
+     * @param vitaminsDaily
+     * @return vitamins collection in an ingredient
+     */
     private static Map<String, TotalVitamins> mapVitamins(Map<String, LinkedHashMap<String, Object>> vitaminsDaily) {
 
-        //MAP THAT HOLD ALL Nutriens as Objects NutrientDetails
+        //HashMap THAT will hold viatamins
         Map<String, TotalVitamins> myCOllVitamins = new HashMap<>();
 
-        
-        //CREATE FILTER WORDS FOR VITAMINS
+        //CREATE FILTER WORDS TO EXCLUDE FROM RESULT
         ArrayList<String> filteredWords = new ArrayList<>();
         filteredWords.add("FAT");
         filteredWords.add("FASAT");
@@ -141,8 +170,7 @@ public class Helpers {
         NumberFormat number = NumberFormat.getInstance();
         number.setMaximumFractionDigits(2);
 
-        
-        //FILLTER VITAMINS AND STORE THEM IN VITAMINS COLLECTION
+        //FILLTER VITAMINS AND STORE THEM IN myCOllVitamins COLLECTION
         vitaminsDaily.forEach((key, val) -> {
 
             if (filteredWords.indexOf(key) == -1) {
@@ -164,9 +192,11 @@ public class Helpers {
     }
 
     /**
-     * Gets the string to format, removes empty spaces, sort the
-     * letters in ascending order
-     * Method is used to store search values in db, so expression "1 orange" and "orange 1" will be evaluated as equal
+     * Gets the string to format, removes empty spaces, sort the letters in
+     * ascending order 
+     * Method is used to store search values in db, so
+     * expression "1 orange" and "orange 1" will be evaluated as equal
+     *
      * @param s string value
      * @return formatted string to store in db as a key for search
      */

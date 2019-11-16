@@ -17,17 +17,33 @@ public class MongoDB implements IRepo {
 
     MongoCollection<Document> collection;
 
+    /**
+     * Initializes database 
+     * @param database database name
+     * @param collection name of collection
+     */
     public MongoDB(String database, String collection) {
         MongoClient mongoClient = MongoClients.create(getConnectionString());
         MongoDatabase db = mongoClient.getDatabase(database);
         this.collection = db.getCollection(collection);
     }
 
+    
+    /**
+     * Gets connection string from db.properties file
+     * @return string connection
+     */
     private String getConnectionString() {
         Properties myProperties = Helpers.getProperties();
         return myProperties.getProperty("mongodb.url");
     }
 
+    
+    /**
+     * Queries document and checks if data exists or is fresh
+     * @param srch data to search
+     * @return found data
+     */
     private Document queryDocument(String srch) {
         Document foundInDb = collection.find(
                 and(
@@ -42,6 +58,11 @@ public class MongoDB implements IRepo {
         return foundInDb;
     }
 
+    /**
+     * Looks for ingredients details in database
+     * @param src ingredient to search
+     * @return collection of nutrients
+     */
     @Override
     public NutrientsCollection getNutrients(String src) {
 
@@ -53,17 +74,18 @@ public class MongoDB implements IRepo {
 
         NutrientsCollection n = new NutrientsCollection();
 
-//        if (doc.size() == 0) {
-//            return null;
-//        } else {
         System.out.println("************DATA FROM DATABASE**********");
         n = Helpers.MapDataToObject(doc);
-//        }
 
         return n;
 
     }
 
+    /**
+     * Removes item from database
+     * @param srch element to remove
+     * @return result of items removed
+     */
     @Override
     public boolean deleteItem(String srch) {
         DeleteResult result = this.collection.deleteOne(eq("searchKeys", srch.toLowerCase()));
@@ -71,6 +93,11 @@ public class MongoDB implements IRepo {
 
     }
 
+    /**
+     * Insert data to  db collection
+     * @param search keyword of item to insert
+     * @param nutrients collection of nutrients to insert
+     */
     @Override
     public void insertNutrients(String search, NutrientsCollection nutrients) {
 
@@ -78,11 +105,14 @@ public class MongoDB implements IRepo {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
+            
+            //Serialize data from objects (works like JSON.stringify() in JavaScript)
             String totalG = objectMapper.writeValueAsString(nutrients.getTotalNutrients());
             String totalD = objectMapper.writeValueAsString(nutrients.getTotalDaily());
             String totalK = objectMapper.writeValueAsString(nutrients.getTotalKcal());
             String vitamins = objectMapper.writeValueAsString(nutrients.getVitaminsCollection());
 
+            //Prepare document to insert in database 
             Document nutrientsData = new Document("searchKeys", search)
                     .append("expiration", LocalDateTime.now().plusHours(24))
                     .append("totalNutrients", totalG)
@@ -90,6 +120,7 @@ public class MongoDB implements IRepo {
                     .append("totalNutrientsKCal", totalK)
                     .append("vitamins", vitamins);
 
+            //Insert document in db
             this.collection.insertOne(nutrientsData);
 
         } catch (JsonProcessingException e) {

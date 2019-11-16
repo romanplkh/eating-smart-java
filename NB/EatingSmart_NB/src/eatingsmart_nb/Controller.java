@@ -14,18 +14,32 @@ public class Controller {
         return errors;
     }
 
+    
+    /**
+     * Initializes controller
+     * @param repo any repository that implements IRepo interface
+     * @param api  API class
+     */
     public Controller(IRepo repo, API api) {
         this.repo = repo;
         this.api = api;
 
     }
 
+    
+    /**
+     * Search data in database or makes call to API endpoint
+     * @param search ingredient to search
+     * @return data mapped against models in NutrientsCollection class
+     */
     public NutrientsCollection queryData(String search) {
         this.errors.clear();
         NutrientsCollection nutr = null;
         //FROM DB
         try {
 
+            
+            //Format search string to avoid redundant calls
             String srchDB = Helpers.FormatStringSearch(search.toLowerCase());
             
             //SEARCH FIRST IN DATABASE
@@ -37,6 +51,8 @@ public class Controller {
                 //No from db? Lets try from API
                 nutr = this.api.getNutrients(search.toLowerCase());
 
+                
+                //NO DATA => INFROM USER
                 if (nutr == null) {
                     errors.clear();
                     errors.add(new ErrorProvider("We had a problem analysing this. "
