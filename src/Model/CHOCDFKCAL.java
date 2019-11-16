@@ -1,15 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Model;
 //@JsonPropertyOrder({
 //    "label",
 //    "quantity",
 //    "unit"
 //})
-public class CHOCDF extends NutrientDetails{
+public class CHOCDFKCAL extends  NutrientDetails{
 
 //    @JsonProperty("label")
 //    private String label;
 //    @JsonProperty("quantity")
-//    private Double quantity;
+//    private Integer quantity;
 //    @JsonProperty("unit")
 //    private String unit;
 //    @JsonIgnore
@@ -26,12 +31,12 @@ public class CHOCDF extends NutrientDetails{
 //    }
 //
 //    @JsonProperty("quantity")
-//    public Double getQuantity() {
+//    public Integer getQuantity() {
 //        return quantity;
 //    }
 //
 //    @JsonProperty("quantity")
-//    public void setQuantity(Double quantity) {
+//    public void setQuantity(Integer quantity) {
 //        this.quantity = quantity;
 //    }
 //

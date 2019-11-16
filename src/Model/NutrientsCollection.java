@@ -15,7 +15,7 @@ public class NutrientsCollection {
 
     private TotalNutrients totalNutrients;
     private TotalNutrientsDaily totalDaily;
-    private Map<String, TotalVitamins> vitaminsCollection;
+    private Map<String, VitaminDetails> vitaminsCollection;
     private TotalNutrientsKCal totalKcal;
 
     public TotalNutrients getTotalNutrients() {
@@ -34,11 +34,11 @@ public class NutrientsCollection {
         this.totalDaily = totalDaily;
     }
 
-    public Map<String, TotalVitamins> getVitaminsCollection() {
+    public Map<String, VitaminDetails> getVitaminsCollection() {
         return vitaminsCollection;
     }
 
-    public void setVitaminsCollection(Map<String, TotalVitamins> vitaminsCollection) {
+    public void setVitaminsCollection(Map<String, VitaminDetails> vitaminsCollection) {
         this.vitaminsCollection = vitaminsCollection;
     }
 

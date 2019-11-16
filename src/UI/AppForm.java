@@ -6,8 +6,8 @@
 package UI;
 
 import Model.NutrientsCollection;
-import Model.TotalNutrients;
 import Model.TotalNutrientsDaily;
+import Model.TotalNutrients;
 import Model.TotalNutrientsKCal;
 import eatingsmart_nb.API;
 import eatingsmart_nb.Controller;
@@ -118,7 +118,6 @@ public class AppForm extends javax.swing.JFrame {
         pieJPanel = new javax.swing.JPanel();
         barJPanel = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -213,7 +212,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel4.setText("Saturated");
         jLabel4.setAlignmentX(0.5F);
         panLabel.add(jLabel4);
-        jLabel4.setBounds(30, 180, 70, 16);
+        jLabel4.setBounds(30, 180, 70, 14);
 
         lblSatD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblSatD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -224,7 +223,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel6.setText("Monosaturated");
         jLabel6.setAlignmentX(0.5F);
         panLabel.add(jLabel6);
-        jLabel6.setBounds(30, 210, 90, 16);
+        jLabel6.setBounds(30, 210, 90, 14);
 
         jSeparator6.setDoubleBuffered(true);
         jSeparator6.setMinimumSize(new java.awt.Dimension(300, 2));
@@ -248,7 +247,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel8.setText("Polysaturated");
         jLabel8.setAlignmentX(0.5F);
         panLabel.add(jLabel8);
-        jLabel8.setBounds(30, 240, 80, 16);
+        jLabel8.setBounds(30, 240, 80, 14);
 
         lblPolyD.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblPolyD.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -257,11 +256,13 @@ public class AppForm extends javax.swing.JFrame {
         lblPolyD.setBounds(250, 240, 60, 20);
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator2.setMinimumSize(new java.awt.Dimension(270, 10));
         panLabel.add(jSeparator2);
         jSeparator2.setBounds(22, 115, 300, 10);
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 20));
         panLabel.add(jSeparator1);
@@ -418,10 +419,6 @@ public class AppForm extends javax.swing.JFrame {
 
         txtSearch.setText("1 banana");
 
-        jLabel5.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Enter ingredient to analyze: ");
-
         jMenu1.setText("File");
 
         jMenuItem1.setText("Exit");
@@ -458,10 +455,8 @@ public class AppForm extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(63, 63, 63)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -482,8 +477,7 @@ public class AppForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSearch)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -614,14 +608,14 @@ public class AppForm extends javax.swing.JFrame {
 
         //DATASET BAR
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(carbs, "Nutrients grams", "Carbs");
-        dataset.setValue(fat, "Nutrients grams", "Fat");
-        dataset.setValue(fiber, "Nutrients grams", "Fiber");
-        dataset.setValue(protein, "Nutrients grams", "Protein");
-        dataset.setValue(sugar, "Nutrients grams", "Sugar");
+        dataset.setValue(carbs, "Nutrients gramms", "Carbs");
+        dataset.setValue(fat, "Nutrients gramms", "Fat");
+        dataset.setValue(fiber, "Nutrients gramms", "Fiber");
+        dataset.setValue(protein, "Nutrients gramms", "Protein");
+        dataset.setValue(sugar, "Nutrients gramms", "Sugar");
 
         //BAR CONFIG
-        JFreeChart bar = ChartFactory.createBarChart("Nutrients (G)", "", "Grams", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart bar = ChartFactory.createBarChart("Nutrients (G)", "", "Gramms", dataset, PlotOrientation.VERTICAL, false, true, false);
 
         ChartPanel barNutrientsPanel = new ChartPanel(bar);
         barNutrientsPanel.setPreferredSize(new Dimension(400, 250));
@@ -763,7 +757,6 @@ public class AppForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

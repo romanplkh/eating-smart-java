@@ -4,7 +4,7 @@ package Model;
 //    "quantity",
 //    "unit"
 //})
-public class CHOCDF extends NutrientDetails{
+public class FAPU extends  NutrientDetails{
 
 //    @JsonProperty("label")
 //    private String label;

@@ -6,8 +6,7 @@
 package Model;
 
 
-public class PROCNTKCAL  extends  NutrientDetails{
-
+public class TotalNutrientsDaily extends Nutrients{
 
 
 }

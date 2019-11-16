@@ -1,3 +1,6 @@
+package eatingsmart_nb;
+
+import Model.NutrientsCollection;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,8 +9,6 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -15,6 +16,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
+import org.bson.Document;
 
 public class API {
 
@@ -23,47 +25,48 @@ public class API {
     private String apiKey;
     private URL baseUrl;
 
-
-    API() {
+    public API() {
         init();
     }
 
-    //Move to controller
     private void init() {
         Properties myProperties = Helpers.getProperties();
         String connectionUrl = myProperties.getProperty("mongodb.url");
         this.mongoClient = MongoClients.create(connectionUrl);
-        getCredentials();
+        getCredentialsApi();
     }
 
-    private void getCredentials() {
+    private void getCredentialsApi() {
         try {
             MongoDatabase db = this.mongoClient.getDatabase("Administrator");
             MongoCollection<Document> admin = db.getCollection("Creds");
             Document creds = admin.find().first();
             //Get credentials for API
-            assert creds != null;
-            assert apiId != null;
-            assert baseUrl != null;
-            this.apiId = creds.get("app_id").toString();
-            this.apiKey = creds.get("app_key").toString();
-            this.baseUrl = new URL(creds.get("base_url").toString() + "app_id=" + this.apiId + "&" + "app_key=" + this.apiKey + "&ingr=");
+
+            if (creds != null) {
+                this.apiId = creds.get("app_id").toString();
+                this.apiKey = creds.get("app_key").toString();
+                this.baseUrl = new URL(creds.get("base_url").toString() + "app_id=" + this.apiId + "&" + "app_key=" + this.apiKey + "&ingr=");
+            } else {
+                throw new MongoException("Can't fetch credentials");
+            }
         } catch (MongoException | MalformedURLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-
-    public JsonNode getData(String search) {
+    private JsonNode getData(String search) {
+        JsonNode nutrientsCollection;
         try {
-            URL searchRequest = new URL(this.baseUrl.toString() + URLEncoder.encode(search, StandardCharsets.UTF_8));
+
+            URL searchRequest = new URL(this.baseUrl.toString() + URLEncoder.encode(search, StandardCharsets.UTF_8.toString()));
             HttpURLConnection conn = (HttpURLConnection) searchRequest.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
             BufferedReader response = new BufferedReader(new InputStreamReader((conn.getInputStream())));
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            JsonNode nutrientsCollection = objectMapper.readTree(response);
+            nutrientsCollection = objectMapper.readTree(response);
             conn.disconnect();
             return nutrientsCollection;
         } catch (IOException e) {
@@ -72,34 +75,16 @@ public class API {
         }
     }
 
+    public NutrientsCollection getNutrients(String srch) {
+        JsonNode data = this.getData(srch);
 
+        if (data.get("totalNutrients").isEmpty()) {
+            System.out.println("cannot fetch data from api");
+            return null;
+        }
 
+        return Helpers.MapDataToObject(data);
 
-
-//    public Map<String, Object> getMappedValue(Document doc) {
-//        try {
-//            Map<String, Object> jsonMap = this.objectMapper.readValue(doc.toJson(), new TypeReference<>() {
-//            });
-//            return jsonMap;
-//        } catch (JsonProcessingException e) {
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//
-//    }
-
-//
-//    public Map<String, Object> getMappedValue(String json) {
-//        try {
-//            Map<String, Object> jsonMap = this.objectMapper.readValue(json, new TypeReference<>() {
-//            });
-//            return jsonMap;
-//        } catch (JsonProcessingException e) {
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//
-//    }
-
+    }
 
 }

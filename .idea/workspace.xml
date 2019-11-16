@@ -3,15 +3,41 @@
   <component name="ChangeListManager">
     <list default="true" id="a0384e9f-7c72-4aea-9577-20b7947943ff" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/MainNutrients.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/MainNutrients.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/Nutrients.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/Nutrients.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Models/Vitamin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/CHOCDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/CHOCDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/CHOCDFKCAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/CHOCDFKCAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/ENERCKCAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/ENERCKCAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/Example.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FAMS.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FAMS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FAPU.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FAPU.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FASAT.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FASAT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FAT.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FAT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FATKCAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FATKCAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FIBTG.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/FIBTG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/NutrientsCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/NutrientsCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/PROCNT.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/PROCNT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/PROCNTKCAL.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/PROCNTKCAL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/SUGAR.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/SUGAR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/TotalDaily.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/TotalNutrientsDaily.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/TotalNutrients.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/TotalNutrients.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/VitaminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/Model/TotalVitamins.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/UI/AppForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/UI/AppForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/Helpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/Helpers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/IRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/IRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/MongoDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/NB/EatingSmart_NB/src/eatingsmart_nb/MongoDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/NutritientsDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/NutritientsDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/API.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helpers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Calories.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/MainNutrients.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/NutritientsDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Vitamins.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Nutrients.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/SmartEating.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/SmartEating.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +89,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="340" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="E:/java/jackson-databind-2.10.0.pr3.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.19669117" />
@@ -138,6 +164,8 @@
       <workItem from="1572367004889" duration="123000" />
       <workItem from="1572710209653" duration="2024000" />
       <workItem from="1573264138166" duration="3938000" />
+      <workItem from="1573692870621" duration="1684000" />
+      <workItem from="1573696250224" duration="2995000" />
     </task>
     <servers />
   </component>

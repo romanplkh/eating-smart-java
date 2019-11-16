@@ -23,11 +23,14 @@ import java.util.Map;
     "ENERC_KCAL",
     "FAT",
     "FASAT",
+    "FAMS",
+    "FAPU",
     "CHOCDF",
     "FIBTG",
+    "SUGAR",
     "PROCNT"
 })
-public class TotalDaily {
+public abstract class Nutrients {
 
     @JsonProperty("ENERC_KCAL")
     private ENERCKCAL energy;
@@ -35,10 +38,16 @@ public class TotalDaily {
     private FAT fat;
     @JsonProperty("FASAT")
     private FASAT fatSaturated;
+    @JsonProperty("FAMS")
+    private FAMS fatMonoSaturated;
+    @JsonProperty("FAPU")
+    private FAPU fatPolySaturated;
     @JsonProperty("CHOCDF")
     private CHOCDF carboHydrates;
     @JsonProperty("FIBTG")
     private FIBTG fiber;
+    @JsonProperty("SUGAR")
+    private SUGAR sugar;
     @JsonProperty("PROCNT")
     private PROCNT protein;
     @JsonIgnore
@@ -70,8 +79,28 @@ public class TotalDaily {
     }
 
     @JsonProperty("FASAT")
-    public void setSaturatedFat(FASAT fASAT) {
+    public void sewStauratedFat(FASAT fASAT) {
         this.fatSaturated = fASAT;
+    }
+
+    @JsonProperty("FAMS")
+    public FAMS getMonostaturatedFat() {
+        return fatMonoSaturated;
+    }
+
+    @JsonProperty("FAMS")
+    public void setMonostaturatedFat(FAMS fAMS) {
+        this.fatMonoSaturated = fAMS;
+    }
+
+    @JsonProperty("FAPU")
+    public FAPU getFatPolySaturated() {
+        return fatPolySaturated;
+    }
+
+    @JsonProperty("FAPU")
+    public void setFatPolySaturated(FAPU fAPU) {
+        this.fatPolySaturated = fAPU;
     }
 
     @JsonProperty("CHOCDF")
@@ -94,6 +123,16 @@ public class TotalDaily {
         this.fiber = fIBTG;
     }
 
+    @JsonProperty("SUGAR")
+    public SUGAR getSUGAR() {
+        return sugar;
+    }
+
+    @JsonProperty("SUGAR")
+    public void setSUGAR(SUGAR sUGAR) {
+        this.sugar = sUGAR;
+    }
+
     @JsonProperty("PROCNT")
     public PROCNT getProtein() {
         return protein;
@@ -113,4 +152,5 @@ public class TotalDaily {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+
 }
