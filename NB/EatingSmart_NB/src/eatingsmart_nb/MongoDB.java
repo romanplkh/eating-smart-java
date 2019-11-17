@@ -13,6 +13,12 @@ import java.time.LocalDateTime;
 import java.util.Properties;
 import org.bson.Document;
 
+/**
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
+ */
+
 public class MongoDB implements IRepo {
 
     MongoCollection<Document> collection;

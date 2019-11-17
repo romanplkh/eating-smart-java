@@ -8,13 +8,15 @@ package UI;
 import java.awt.Dimension;
 
 /**
- *
- * @author Roman
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
  */
 public class AboutForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form AboutForm
+     * Creates new form AboutForm ans sets its position on the screen to be centered
+     * 
      */
     public AboutForm() {
         initComponents();
@@ -45,7 +47,7 @@ public class AboutForm extends javax.swing.JFrame {
         jTextArea1.setColumns(2);
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Eating Smart application allows to enter an ingredient for what you are cooking, like \"1 cup rice\" and learn its nutrition details in under couple seconds.\n\n");
+        jTextArea1.setText("         Eating Smart application allows to enter an ingredient for what you are cooking, like \"1 cup rice\" and learn its nutrition details in under couple seconds.\n\n");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);

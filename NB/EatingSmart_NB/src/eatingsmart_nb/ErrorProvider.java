@@ -6,8 +6,9 @@
 package eatingsmart_nb;
 
 /**
- *
- * @author Roman
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
  */
 public class ErrorProvider {
     private String description;

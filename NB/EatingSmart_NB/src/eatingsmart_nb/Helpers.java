@@ -19,6 +19,12 @@ import java.util.Map;
 import java.util.Properties;
 import org.bson.Document;
 
+
+/**
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
+ */
 public class Helpers {
 
     public static Properties getProperties() {

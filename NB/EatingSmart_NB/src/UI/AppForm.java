@@ -35,8 +35,9 @@ import org.jfree.data.general.DefaultKeyedValuesDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 /**
- *
- * @author Roman
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
  */
 public class AppForm extends javax.swing.JFrame {
 
@@ -54,6 +55,8 @@ public class AppForm extends javax.swing.JFrame {
 
         app = new Controller(new MongoDB("EatingSmart", "Nutrients"), new API());
 
+        
+        //Set location of main JFrame on the screen
         Dimension dim = getToolkit().getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         setInitialPanelsVisibility();
@@ -498,7 +501,10 @@ public class AppForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //GET NUTRITIONS LABEL
+    /**
+     * Populates label Nutrition Facts with data
+     * @param n Collection of Nutrients
+     */
     private void getLabel(NutrientsCollection n) {
 
         NumberFormat num = NumberFormat.getNumberInstance();
@@ -507,6 +513,8 @@ public class AppForm extends javax.swing.JFrame {
         TotalNutrients t = n.getTotalNutrients();
         TotalNutrientsDaily d = n.getTotalDaily();
 
+        
+        //Nutruents in grams
         lblFatMg.setText(t.getFAT() != null ? num.format(t.getFAT().getQuantity()) + " g" : "");
         lblCalories.setText(t.getEnergy() != null ? num.format(t.getEnergy().getQuantity()) + " kcal" : "");
         lblCarbG.setText(t.getCarbs() != null ? num.format(t.getCarbs().getQuantity()) + " g" : "");
@@ -515,8 +523,9 @@ public class AppForm extends javax.swing.JFrame {
         lblPolyG.setText(t.getFatPolySaturated() != null ? num.format(t.getFatPolySaturated().getQuantity()) + " g" : "");
         lblProteinG.setText(t.getProtein() != null ? num.format(t.getProtein().getQuantity()) + " g" : "");
         lblSaturatedMg.setText(t.getSaturatedFat() != null ? num.format(t.getSaturatedFat().getQuantity()) + " g" : "");
-        lblSugarG.setText(t.getSUGAR() != null ? num.format(t.getSUGAR().getQuantity()) : "");
+        lblSugarG.setText(t.getSUGAR() != null ? num.format(t.getSUGAR().getQuantity()) + " g" : "");
 
+        //Nutrients in daily value
         lblFat.setText(d.getFAT() != null ? num.format(d.getFAT().getQuantity()) + " %" : "");
         lblCarbsD.setText(d.getCarbs() != null ? num.format(d.getCarbs().getQuantity()) + " %" : "");
         lblFiberD.setText(d.getFiber() != null ? num.format(d.getFiber().getQuantity()) + " %" : "");
@@ -527,12 +536,17 @@ public class AppForm extends javax.swing.JFrame {
 
     }
 
-    //PIE CHART CALORIES PROPORTION
+   /**
+    * Populates PieChart with calories proportion
+    * @param cal calories proportion
+    */
     private void getCaloriesProportion(TotalNutrientsKCal cal) {
 
+        
+        //Refresh panel when new data is loaded
         refreshChart(pieJPanel);
 
-        //REFERSH PANEL FROM PREVIOUS CHART   
+          
         //DATASET PIE
         double carbsData = cal.getCarbsKCAL().getQuantity();
         double energyData = cal.getEnergy().getQuantity();
@@ -556,8 +570,9 @@ public class AppForm extends javax.swing.JFrame {
 
         //CONFIGURE HOW DATA IS DISPLAYED
         PiePlot plot = (PiePlot) chart.getPlot();
-        plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 10));
+        plot.setLabelFont(new Font("Rockwell", Font.PLAIN, 12));
 
+        //SET COLORS FOR SECTIONS
         plot.setSectionPaint("Protein", Color.GREEN);
         plot.setSectionPaint("Fat", Color.YELLOW);
         plot.setSectionPaint("Carbohydrates", Color.MAGENTA);
@@ -567,7 +582,7 @@ public class AppForm extends javax.swing.JFrame {
                 "{0}: {1} ({2})", new DecimalFormat("0kcal"), new DecimalFormat("0%"));
         plot.setLabelGenerator(gen);
 
-        //PIE CONFIG
+        //PIE SIZES CONFIG
         ChartPanel myChart = new ChartPanel(chart, 400, 250, 350, 230, 350, 230, true, false, true, true, false, false);
         myChart.setMouseWheelEnabled(true);
 
@@ -578,6 +593,11 @@ public class AppForm extends javax.swing.JFrame {
         pieJPanel.setVisible(true);
     }
 
+    
+    /**
+     * Set table with vitamins
+     * @param nutrients collection of nutrients
+     */
     private void getVitamins(NutrientsCollection nutrients) {
 
         //Table 
@@ -603,16 +623,21 @@ public class AppForm extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Display bar chart with main nutrients 
+     * @param nutrients Total nutrients in grams
+     */
     private void getNutrientsChart(TotalNutrients nutrients) {
         refreshChart(barJPanel);
 
+        //DATA SET FOR CHART 
         double carbs = nutrients.getCarbs() != null ? nutrients.getCarbs().getQuantity() : 0;
         double fat = nutrients.getFAT() != null ? nutrients.getFAT().getQuantity() : 0;
         double fiber = nutrients.getFiber() != null ? nutrients.getFiber().getQuantity() : 0;
         double protein = nutrients.getProtein() != null ? nutrients.getProtein().getQuantity() : 0;
         double sugar = nutrients.getSUGAR() != null ? nutrients.getSUGAR().getQuantity() : 0;
 
-        //DATASET BAR
+        //SET DATASET FOR BARCHART
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(carbs, "Nutrients grams", "Carbs");
         dataset.setValue(fat, "Nutrients grams", "Fat");
@@ -623,15 +648,18 @@ public class AppForm extends javax.swing.JFrame {
         //BAR CONFIG
         JFreeChart bar = ChartFactory.createBarChart("Nutrients (G)", "", "Grams", dataset, PlotOrientation.VERTICAL, false, true, false);
 
+        //BAR SIZE CONFIG
         ChartPanel barNutrientsPanel = new ChartPanel(bar);
         barNutrientsPanel.setPreferredSize(new Dimension(400, 250));
 
+           
+        //BAR DISPLAY CONFIG
         CategoryPlot plot = (CategoryPlot) bar.getPlot();
+        plot.setLabelFont(new Font("Rockwell", Font.PLAIN, 12));
         BarRenderer barRenderer = (BarRenderer) plot.getRenderer();
-
         barRenderer.setSeriesPaint(0, Color.BLUE);
 
-        //HOW PIE IS SITTING IN JPANEL
+        //HOW BAR IS SITTING IN JPANEL
         barJPanel.setLayout(new java.awt.BorderLayout());
         barJPanel.add(barNutrientsPanel, BorderLayout.CENTER);
         barJPanel.validate();
@@ -642,6 +670,7 @@ public class AppForm extends javax.swing.JFrame {
 
     /**
      * REMOVES ALL ELEMENTS FROM PANEL AND REFRESHES IT
+     * @param panel JPanel to apply for
      */
     private void refreshChart(JPanel panel) {
         panel.removeAll();
@@ -649,6 +678,9 @@ public class AppForm extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Sets initial visibility of panels on the JFrame
+     */
     private void setInitialPanelsVisibility() {
         panLabel.setVisible(false);
         pieJPanel.setVisible(false);
@@ -656,7 +688,10 @@ public class AppForm extends javax.swing.JFrame {
         jVitaminsTable.setVisible(false);
     }
 
-
+/**
+ * Event handler for search button
+ * @param evt  click event
+ */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
 
         try {
@@ -669,7 +704,7 @@ public class AppForm extends javax.swing.JFrame {
                 return;
             }
 
-            //SEARCH
+            //SEARCH DATA
             NutrientsCollection nutrients = app.queryData(srchWord);
 
             if (!app.getErrors().isEmpty()) {
@@ -683,6 +718,7 @@ public class AppForm extends javax.swing.JFrame {
                 this.getLabel(nutrients);
 
                 //SHOW CHARTS 
+                
                 //KCAL PROPORTION
                 getCaloriesProportion(nutrients.getTotalKcal());
                 //BAR NUTRIENTS GRAMS

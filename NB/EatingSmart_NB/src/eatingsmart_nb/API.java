@@ -18,6 +18,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import org.bson.Document;
 
+
+/**
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
+ */
+
 public class API {
 
     private MongoClient mongoClient;

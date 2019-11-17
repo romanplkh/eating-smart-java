@@ -3,8 +3,9 @@ package eatingsmart_nb;
 import UI.AppForm;
 
 /**
- *
- * @author Roman
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
  */
 public class EatingSmart_NB {
 
