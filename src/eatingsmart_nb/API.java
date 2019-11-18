@@ -29,6 +29,10 @@ public class API {
         init();
     }
 
+    /**
+     * Get string connection to db
+     * Connect to MongoDb and get API key, API id and base URL
+     */
     private void init() {
         Properties myProperties = Helpers.getProperties();
         String connectionUrl = myProperties.getProperty("mongodb.url");
@@ -36,6 +40,11 @@ public class API {
         getCredentialsApi();
     }
 
+    
+    /**
+     * Get API id, API key, base URL
+     * 
+     */
     private void getCredentialsApi() {
         try {
             MongoDatabase db = this.mongoClient.getDatabase("Administrator");
@@ -54,7 +63,14 @@ public class API {
             System.out.println(e.getMessage());
         }
     }
-
+    
+    
+    /**
+     * 
+     * Makes call to API and parses the result to JSON Node
+     * @param search value to search
+     * @return result of API call in JsonNode Raw format
+     */
     private JsonNode getData(String search) {
         JsonNode nutrientsCollection;
         try {
@@ -75,6 +91,11 @@ public class API {
         }
     }
 
+    /**
+     * Gets data in JsonNode format and calls method to map data against models
+     * @param srch ingredient to search
+     * @return mapped collection of nutrients
+     */
     public NutrientsCollection getNutrients(String srch) {
         JsonNode data = this.getData(srch);
 

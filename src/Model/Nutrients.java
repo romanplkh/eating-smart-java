@@ -15,8 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- * @author Roman
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({

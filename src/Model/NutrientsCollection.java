@@ -8,14 +8,15 @@ package Model;
 import java.util.Map;
 
 /**
- *
- * @author Roman
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
  */
 public class NutrientsCollection {
 
     private TotalNutrients totalNutrients;
     private TotalNutrientsDaily totalDaily;
-    private Map<String, VitaminDetails> vitaminsCollection;
+    private Map<String, TotalVitamins> vitaminsCollection;
     private TotalNutrientsKCal totalKcal;
 
     public TotalNutrients getTotalNutrients() {
@@ -34,11 +35,11 @@ public class NutrientsCollection {
         this.totalDaily = totalDaily;
     }
 
-    public Map<String, VitaminDetails> getVitaminsCollection() {
+    public Map<String, TotalVitamins> getVitaminsCollection() {
         return vitaminsCollection;
     }
 
-    public void setVitaminsCollection(Map<String, VitaminDetails> vitaminsCollection) {
+    public void setVitaminsCollection(Map<String, TotalVitamins> vitaminsCollection) {
         this.vitaminsCollection = vitaminsCollection;
     }
 

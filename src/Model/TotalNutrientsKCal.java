@@ -6,8 +6,9 @@
 package Model;
 
 /**
- *
- * @author Roman
+ * @exercise Final Project
+ * @author Roman Pelikh
+ * @date 2019-11-16
  */
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;

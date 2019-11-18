@@ -181,7 +181,7 @@ public class Helpers {
 
             if (filteredWords.indexOf(key) == -1) {
                 String label = val.get("label").toString();
-                double quantity = val.get("quantity") != null ? Double.parseDouble(val.get("quantity").toString()) : 0;
+                double quantity = val.get("quantity") != null ? Double.parseDouble(number.format(val.get("quantity"))) : 0;
                 String unit = val.get("unit").toString();
 
                 //Build Object TotalVitamins
