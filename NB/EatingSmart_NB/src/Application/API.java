@@ -1,4 +1,4 @@
-package eatingsmart_nb;
+package Application;
 
 import Model.NutrientsCollection;
 import com.fasterxml.jackson.databind.DeserializationFeature;

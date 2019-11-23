@@ -5,13 +5,13 @@
  */
 package UI;
 
+import Application.API;
+import Application.Controller;
+import Application.MongoDB;
 import Model.NutrientsCollection;
 import Model.TotalNutrients;
 import Model.TotalNutrientsDaily;
 import Model.TotalNutrientsKCal;
-import eatingsmart_nb.API;
-import eatingsmart_nb.Controller;
-import eatingsmart_nb.MongoDB;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,9 +25,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
+import org.jfree.chart.*;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
@@ -63,6 +61,7 @@ public class AppForm extends javax.swing.JFrame {
         Dimension dim = getToolkit().getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         setInitialPanelsVisibility();
+        this.setVisible(true);
 
     }
 
@@ -478,7 +477,7 @@ public class AppForm extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(panLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)

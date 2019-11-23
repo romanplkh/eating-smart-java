@@ -1,6 +1,4 @@
-package eatingsmart_nb;
-
-import UI.AppForm;
+package Application;
 
 /**
  * @exercise Final Project
@@ -15,8 +13,8 @@ public class EatingSmart_NB {
      */
     
     public static void main(String[] args) {
-        AppForm form = new AppForm();
-        form.setVisible(true);
+//        AppForm form = new AppForm();
+//        form.setVisible(true);
 
     }
 

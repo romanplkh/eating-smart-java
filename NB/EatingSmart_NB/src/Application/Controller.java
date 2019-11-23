@@ -1,4 +1,4 @@
-package eatingsmart_nb;
+package Application;
 
 import Model.NutrientsCollection;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class Controller {
 
     private IRepo repo;
     private API api;
-    private List<ErrorProvider> errors = new ArrayList<>();
+    private List<ErrorProvider> errors;
 
     public List<ErrorProvider> getErrors() {
         return errors;
@@ -30,6 +30,7 @@ public class Controller {
     public Controller(IRepo repo, API api) {
         this.repo = repo;
         this.api = api;
+        this.errors = new ArrayList<>();
 
     }
 

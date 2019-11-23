@@ -1,4 +1,4 @@
-package eatingsmart_nb;
+package Application;
 
 import Model.NutrientsCollection;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,7 +21,7 @@ import org.bson.Document;
 
 public class MongoDB implements IRepo {
 
-    MongoCollection<Document> collection;
+    private MongoCollection<Document> collection;
 
     /**
      * Initializes database 
