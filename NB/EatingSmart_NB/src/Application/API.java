@@ -52,7 +52,7 @@ public class API {
      * Get API id, API key, base URL
      * 
      */
-    private void getCredentialsApi() {
+    private void getCredentialsApi()  {
         try {
             MongoDatabase db = this.mongoClient.getDatabase("Administrator");
             MongoCollection<Document> admin = db.getCollection("Creds");
@@ -110,6 +110,8 @@ public class API {
             System.out.println("cannot fetch data from api");
             return null;
         }
+        
+                System.out.println("************DATA FROM API**********");
 
         return Helpers.MapDataToObject(data);
 

@@ -10,9 +10,16 @@ package Application;
  * @author Roman Pelikh
  * @date 2019-11-16
  */
+
+/**
+ * Custom error provider to handle errors
+ */
 public class ErrorProvider {
     private String description;
-
+/**
+ * Constructor for provider to add custom errors
+ * @param description description of error
+ */
     public ErrorProvider(String description) {
         this.description = description;
     }

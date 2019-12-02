@@ -55,7 +55,7 @@ public class Controller {
 
             if (nutr == null) {
 
-                System.out.println("************DATA FROM API**********");
+        
                 //No from db? Lets try from API
                 nutr = this.api.getNutrients(search.toLowerCase());
 

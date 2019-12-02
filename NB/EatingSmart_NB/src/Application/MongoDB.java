@@ -48,7 +48,7 @@ public class MongoDB implements IRepo {
     /**
      * Queries document and checks if data exists or is fresh
      * @param srch data to search
-     * @return found data
+     * @return found data or null if nothing found
      */
     private Document queryDocument(String srch) {
         Document foundInDb = collection.find(
@@ -56,10 +56,6 @@ public class MongoDB implements IRepo {
                         gt("expiration", LocalDateTime.now()),
                         eq("searchKeys", srch.toLowerCase())
                 )).first();
-
-        if (foundInDb == null) {
-            return null;
-        }
 
         return foundInDb;
     }
