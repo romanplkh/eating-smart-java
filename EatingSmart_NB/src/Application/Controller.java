@@ -76,7 +76,9 @@ public class Controller {
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            errors.add(new ErrorProvider("We had a problem analysing this. "
+                            + "Please check the ingredient spelling or if you have entered a quantities for the ingredients."));
+            System.out.println("API: no unit for quantity " + e.getMessage());
         }
 
         return nutr;

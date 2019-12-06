@@ -2,6 +2,28 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/NutrientDetails.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Application/MongoDB.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/UI/AboutForm.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/Nutrients.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/TotalNutrientsDaily.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/UI/AppForm.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Application/ErrorProvider.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Application/IRepo.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/FATKCAL.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Application/Controller.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/NutrientsCollection.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/FASAT.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Application/Helpers.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/FAMS.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/FIBTG.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/SUGAR.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/TotalNutrients.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/TotalVitamins.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/CHOCDF.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Application/API.java</file>
+            <file>file:/E:/_Java_Projects/EatingSmart/EatingSmart_NB/src/Model/TotalNutrientsKCal.java</file>
+        </group>
     </open-files>
 </project-private>

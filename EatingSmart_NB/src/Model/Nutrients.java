@@ -80,7 +80,7 @@ public abstract class Nutrients {
     }
 
     @JsonProperty("FASAT")
-    public void sewStauratedFat(FASAT fASAT) {
+    public void setStauratedFat(FASAT fASAT) {
         this.fatSaturated = fASAT;
     }
 
